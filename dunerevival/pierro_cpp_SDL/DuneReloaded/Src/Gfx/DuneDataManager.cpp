@@ -32,9 +32,15 @@ namespace Gfx
 		return ~0u;
 	}
 
-	void CDataManager::Register(const char _aszFName[8], bool _bSequences)
+	bool CDataManager::Register(const char _aszFName[8], bool _bSequences)
 	{
 		Uint32 iNewKey = ComputeKey(_aszFName);
+
+		for (Uint32 i = 0; i < m_iDataCount; ++i)
+		{
+			if (m_akData[i].Key == iNewKey)
+				return false;
+		}
 
 		Sint32 iInsertIndex = m_iDataCount;
 		while (iInsertIndex > 0 && m_akData[iInsertIndex - 1].Key > iNewKey)
@@ -46,6 +52,8 @@ namespace Gfx
 		m_akData[iInsertIndex].Key = iNewKey;
 		m_akData[iInsertIndex].Sequences = _bSequences;
 		++m_iDataCount;
+
+		return true;
 	}
 	
 	CAnimated* CDataManager::Get(const char _aszFName[8], SDL_Surface* _pkScreen, Uint32 _iFrame)

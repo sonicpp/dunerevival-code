@@ -24,7 +24,7 @@ solution "DuneR"
 		kind "ConsoleApp"
 		language "C++"
 		targetdir "../Data"
-		links { "SDL", "SDLmain", "SDL_mixer", "Core" }
+		links { "SDL", "SDLmain", "SDL_mixer" }
 
 		includedirs { "../Src/", "../Src/Game", "../Src/Gfx", "../Src/Core" }
 

@@ -33,8 +33,11 @@ bool CRoom::Read(const CBuffer& _kSrc, Uint32 _iPlace, Uint32 _iRoom, Gfx::CAnim
 		Uint32 iEndOfs = (i == iRoomCount - 1) ? _kSrc.Size() : Gfx::GetOffset(pcBuffer, i + 1);
 		Uint32 iSize = iEndOfs - iStartOfs;
 
-		kRoom.Init(iSize, 0);
+		const Uint32 iPadding = 16;
+		kRoom.Init(iSize + iPadding, 0);
 		memcpy(kRoom.Data(), pcBuffer + iStartOfs, iSize);
+		for (Uint32 j = 0; j < iPadding; ++j)
+			kRoom.Data()[iSize + j] = 0xff;
 
 		if (_bDump)
 		{

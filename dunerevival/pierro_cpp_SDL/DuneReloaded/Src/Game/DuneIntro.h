@@ -29,6 +29,8 @@ protected:
 	char m_aszFiles[4][16];
 	Gfx::CAnimated* m_apkCharacters[4];
 
+	void StartGame(const CGameContext& _kCtx);
+
 };
 
 #endif
