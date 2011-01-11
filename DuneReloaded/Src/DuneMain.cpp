@@ -67,15 +67,18 @@ int main(int argc, char* argv[])
 	Gfx::CDataManager kDataMgr;
 	CGameNode* pkEventNode = NULL;
 	
-	kDataMgr.Register("ICONES", false);
-	kDataMgr.Register("INTDS", false);
-	kDataMgr.Register("STARS", false);
-	kDataMgr.Register("CRYO", false);
-	kDataMgr.Register("BACK", false);
+	Uint32 iCount = 0;
+	kDataMgr.Register("ICONES", false) && iCount++;
+	kDataMgr.Register("INTDS", false) && iCount++;
+	kDataMgr.Register("STARS", false) && iCount++;
+	kDataMgr.Register("CRYO", false) && iCount++;
+	kDataMgr.Register("BACK", false) && iCount++;
 	for (Uint32 i = 0; i < Consts::NUM_BACKGROUNDS; ++i)
-		kDataMgr.Register(Consts::aszBackgroundNames[i], false);
+		kDataMgr.Register(Consts::aszBackgroundNames[i], false) && iCount++;
 	for (Uint32 i = 0; i < Consts::NUM_CHARACTERS; ++i)
-		kDataMgr.Register(Consts::aszCharacterNames[i], true);
+		kDataMgr.Register(Consts::aszCharacterNames[i], true) && iCount++;
+
+	Uint32 iExpectedCount = 5 + Consts::NUM_BACKGROUNDS + Consts::NUM_CHARACTERS;
 
 	CGameContext kCtx;
 	kCtx.Screen = pkBackScreen;
@@ -94,7 +97,7 @@ int main(int argc, char* argv[])
 
 	while (!bQuit)
 	{
-		kCmds.Run();
+		kCmds.Run(kCtx);
 
 		kCtx.CurrentTick = SDL_GetTicks();
 		kCtx.Frame = iFrame++;

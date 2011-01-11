@@ -4,37 +4,88 @@
 #include "DuneR.h"
 #include "DuneScn.h"
 #include "DuneVoxel.h"
+#include "DunePlanet.h"
 
+// ----------------------------------------------------------------------------------------------
 class CDuneTest : public CGameNode
 {
 
 public:
 
-	CDuneTest();
+};
+
+// ----------------------------------------------------------------------------------------------
+class CDuneTest_Voxel : public CDuneTest
+{
+
+public:
+
+	CDuneTest_Voxel(const CGameContext& _kCtx);
 
 	virtual void Run(const CGameContext& _kCtx);
 	virtual void HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt);
 
 protected:
 
-	void Run_TestGui(const CGameContext& _kCtx);
-	void Run_TestVoxel(const CGameContext& _kCtx);
-	void Run_TestRoom(const CGameContext& _kCtx);
-	void Run_TestCharacter(const CGameContext& _kCtx);
-	void Run_TestPlanet(const CGameContext& _kCtx);
-
-	bool m_bRoomLoaded;
-	Uint32 m_iAnimIndex;
-	Uint32 m_iCharacter;
-
-	Uint32 m_iRoomIndex;
-	Uint32 m_iBackgroundIndex;
-
-	Scn::CRoom m_kRoom;
-	
 	typedef CDuneVoxel::Renderer<Consts::ScreenW, Consts::ScreenH, 48, 8> tVoxel;
 	tVoxel m_kVoxel;
-	
+
+	tColor m_akSkyColors[Consts::ScreenH];
+
+};
+
+// ----------------------------------------------------------------------------------------------
+class CDuneTest_Character : public CDuneTest
+{
+
+public:
+
+	CDuneTest_Character(const CGameContext& _kCtx);
+	virtual ~CDuneTest_Character();
+
+	virtual void Run(const CGameContext& _kCtx);
+	virtual void HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt);
+
+protected:
+
+	Uint32 m_iAnimIndex;
+	Uint32 m_iCharacter;
+	SDL_Surface* m_pkZoomedBg;
+
+};
+
+// ----------------------------------------------------------------------------------------------
+class CDuneTest_Room : public CDuneTest
+{
+
+public:
+
+	CDuneTest_Room(const CGameContext& _kCtx);
+
+	virtual void Run(const CGameContext& _kCtx);
+	virtual void HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt);
+
+protected:
+
+	Scn::CRoom m_kRoom;
+
+};
+
+// ----------------------------------------------------------------------------------------------
+class CDuneTest_Planet : public CDuneTest
+{
+
+public:
+
+	CDuneTest_Planet(const CGameContext& _kCtx);
+
+	virtual void Run(const CGameContext& _kCtx);
+	virtual void HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt);
+
+protected:
+
+	CPlanet<Consts::PlanetW, Consts::PlanetH> m_kPlanet;
+
 };
 
 #endif

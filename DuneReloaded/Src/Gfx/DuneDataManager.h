@@ -14,7 +14,7 @@ namespace Gfx
 	public:
 
 		CDataManager();
-		void Register(const char _aszFName[8], bool _bSequences);
+		bool Register(const char _aszFName[8], bool _bSequences);
 		CAnimated* Get(const char _aszFName[8], SDL_Surface* _pkScreen, Uint32 _iFrame);
 		void Clean(Uint32 _iFrame);
 		

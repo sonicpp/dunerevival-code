@@ -115,7 +115,7 @@ public:
 };
 
 template <class NewChild>
-class CReplaceChildren : public Core::CCommand
+class CReplaceChildren : public Core::CCommandParam<CGameContext>
 {
 
 public:
@@ -125,18 +125,40 @@ public:
 		m_pkParent = _pkParent;
 	}
 
-	virtual void Exec()
+	virtual void Exec(const CGameContext& _kCtx)
 	{
 		CGameNode* pkN;
 		while ((pkN = m_pkParent->Iterate(NULL)) != NULL)
 			delete pkN;
-		m_pkParent->AttachChild(new NewChild);
+		m_pkParent->AttachChild(new NewChild(_kCtx));
 	}
 
 protected:
 
 	CGameNode* m_pkParent;
 	
+};
+
+template <class NewChild>
+class CAddChild : public Core::CCommandParam<CGameContext>
+{
+
+public:
+
+	void Init(CGameNode* _pkParent)
+	{
+		m_pkParent = _pkParent;
+	}
+
+	virtual void Exec(const CGameContext& _kCtx)
+	{
+		m_pkParent->AttachChild(new NewChild(_kCtx));
+	}
+
+protected:
+
+	CGameNode* m_pkParent;
+
 };
 
 void DumpAll(SDL_PixelFormat* _pkFmt);

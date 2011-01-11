@@ -1,7 +1,9 @@
 
 #include "DuneIntro.h"
 #include "DuneTest.h"
+#include "DuneMenu.h"
 #include "DuneGfx.h"
+#include "DuneBackGround.h"
 #include "DuneHsq.h"
 #include "DuneDataManager.h"
 
@@ -170,7 +172,7 @@ void CDuneIntro::Run(const CGameContext& _kCtx)
 
 	if (iTick >= eLastFrame)
 	{
-		_kCtx.Commands->Add<CReplaceChildren<CDuneTest> >()->Init(GetParent());
+		StartGame(_kCtx);
 	}
 }
 
@@ -183,7 +185,7 @@ void CDuneIntro::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt)
 			switch (_kEvt.key.keysym.sym)
 			{
 			case SDLK_ESCAPE:
-				_kCtx.Commands->Add<CReplaceChildren<CDuneTest> >()->Init(GetParent());
+				StartGame(_kCtx);
 				break;
 			}
 		}
@@ -191,3 +193,9 @@ void CDuneIntro::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt)
 	}
 }
 
+void CDuneIntro::StartGame(const CGameContext& _kCtx)
+{
+	//_kCtx.Commands->Add<CReplaceChildren<CDuneTest> >()->Init(GetParent());
+	_kCtx.Commands->Add<CReplaceChildren<CDuneBackGround> >()->Init(GetParent());
+	_kCtx.Commands->Add<CAddChild<CDuneMenu> >()->Init(GetParent());
+}
