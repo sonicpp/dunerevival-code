@@ -19,13 +19,6 @@ solution "DuneR"
 		defines { "NDEBUG" }
 		flags { "Optimize" }
 
-	project "Core"
-
-		kind "StaticLib"
-		language "C++"
-
-		files { "../../Common/Src/Core/**.h", "../../Common/Src/Core/**.cpp" }
-
 	project "DuneR"
 
 		kind "ConsoleApp"
@@ -33,6 +26,6 @@ solution "DuneR"
 		targetdir "../Data"
 		links { "SDL", "SDLmain", "SDL_mixer", "Core" }
 
-		includedirs { "../Src/", "../Src/Game", "../Src/Gfx" }
+		includedirs { "../Src/", "../Src/Game", "../Src/Gfx", "../Src/Core" }
 
 		files { "../Src/**.h", "../Src/**.cpp" }
