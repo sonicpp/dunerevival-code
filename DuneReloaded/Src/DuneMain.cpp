@@ -6,6 +6,7 @@
 #include "DuneRoot.h"
 #include "DuneGfx.h"
 #include "DuneFont.h"
+#include "DuneText.h"
 #include "DuneHsq.h"
 #include "DuneDataManager.h"
 
@@ -76,6 +77,7 @@ int main(int argc, char* argv[])
 	kDataMgr.Register("STARS", false) && iCount++;
 	kDataMgr.Register("CRYO", false) && iCount++;
 	kDataMgr.Register("BACK", false) && iCount++;
+	kDataMgr.Register("FRESK", false) && iCount++;
 	for (Uint32 i = 0; i < Consts::NUM_BACKGROUNDS; ++i)
 		kDataMgr.Register(Consts::aszBackgroundNames[i], false) && iCount++;
 	for (Uint32 i = 0; i < Consts::NUM_CHARACTERS; ++i)
@@ -92,11 +94,11 @@ int main(int argc, char* argv[])
 	kCtx.Font = &kFont;
 	CUpdateVisitor kUVisitor(kCtx, pkEventNode);
 
+	CDuneText kText;
 	{
 		CBuffer kData;
 		bool bData = HsqTools::UnHsq("PHRASE21", "HSQ", &kData);
-		Gfx::CSentences kTestS;
-		Gfx::ReadSentences(kData, &kTestS);
+		kText.Load(kData);
 	}
 
 	while (!bQuit)
@@ -123,7 +125,6 @@ int main(int argc, char* argv[])
 		}
 		SDL_BlitSurface(pkBackScreen, NULL, pkScreen, NULL);
 		SDL_Flip(pkScreen);
-		
 		
 		SDL_Event kEvent;
 		while (SDL_PollEvent(&kEvent))
