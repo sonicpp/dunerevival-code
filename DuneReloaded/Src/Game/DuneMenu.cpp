@@ -25,6 +25,7 @@ void CDuneMenu::Run_TestGui(const CGameContext& _kCtx)
 	pkGui->DrawSprite(_kCtx.Screen, 0, 0, Consts::ScreenH, Gfx::ComputeDrawMask(255, Gfx::Left, Gfx::Bottom));
 	pkGui->DrawSprite(_kCtx.Screen, 3, Consts::ScreenW, Consts::ScreenH, Gfx::ComputeDrawMask(255, Gfx::Right, Gfx::Bottom));
 	pkGui->DrawSprite(_kCtx.Screen, 14, Consts::ScreenW / 2, Consts::ScreenH - 48, Gfx::ComputeDrawMask(255, Gfx::Center, Gfx::Top));
+	pkGui->DrawSprite(_kCtx.Screen, 15, Consts::ScreenW / 2, Consts::ScreenH - 48, Gfx::ComputeDrawMask(255, Gfx::Center, Gfx::Bottom));
 
 	const Uint32 iMaxFaceTick = 512u;
 	Uint32 iTick = _kCtx.CurrentTick - m_iStartTick;
@@ -54,7 +55,7 @@ void CDuneMenu::Run_TestGui(const CGameContext& _kCtx)
 	*/
 
 	Uint32 iIndex = Core::Min(10u, (iFadeTick * 10) / iMaxFaceTick);
-	pkGui->DrawSprite(_kCtx.Screen, 16 + iIndex, Consts::ScreenW / 2, Consts::ScreenH - 64, Gfx::ComputeDrawMask(255, Gfx::Center, Gfx::Top));
+	pkGui->DrawSprite(_kCtx.Screen, 16 + iIndex, Consts::ScreenW / 2, Consts::ScreenH - 63, Gfx::ComputeDrawMask(255, Gfx::Center, Gfx::Top));
 }
 
 void CDuneMenu::UpdateBg(const CGameContext& _kCtx)
@@ -77,6 +78,9 @@ void CDuneMenu::UpdateBg(const CGameContext& _kCtx)
 		break;
 	case eBg_Planet:
 		_kCtx.Commands->Add<CReplaceChildren<CDuneTest_Planet> >()->Init(m_pkPrevious);
+		break;
+	case eBg_Font:
+		_kCtx.Commands->Add<CReplaceChildren<CDuneTest_Font> >()->Init(m_pkPrevious);
 		break;
 	}
 }
@@ -114,6 +118,9 @@ void CDuneMenu::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt)
 				break;
 			case SDLK_F4:
 				SetWantedBg(_kCtx, eBg_Planet);
+				break;
+			case SDLK_F5:
+				SetWantedBg(_kCtx, eBg_Font);
 				break;
 			default:
 				bForward = true;
