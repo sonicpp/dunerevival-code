@@ -151,11 +151,13 @@ CDuneTest_Character::CDuneTest_Character(const CGameContext& _kCtx)
 	m_pkZoomedBg = SDL_CreateRGBSurface(SDL_HWSURFACE, Consts::ScreenW, Consts::ScreenH, pkScreen->format->BitsPerPixel, pkScreen->format->Rmask, pkScreen->format->Gmask, pkScreen->format->Bmask, pkScreen->format->Amask);
 	SDL_Surface* pkTmpBg = SDL_CreateRGBSurface(SDL_HWSURFACE, Consts::ScreenW, Consts::ScreenH, pkScreen->format->BitsPerPixel, pkScreen->format->Rmask, pkScreen->format->Gmask, pkScreen->format->Bmask, pkScreen->format->Amask);
 
-	Gfx::CAnimated* pkBg = _kCtx.DataManager->Get(Consts::aszBackgroundNames[0], _kCtx.Screen, _kCtx.Frame);
+	const Consts::CBginfo& kBg = Consts::akBackgrounds[0];
+
+	Gfx::CAnimated* pkBg = _kCtx.DataManager->Get(Consts::aszBackgroundNames[kBg.Backg], _kCtx.Screen, _kCtx.Frame);
 	CBuffer kRoomData;
 	bool bData = HsqTools::UnHsq("PALACE", "SAL", &kRoomData);
 	Scn::CRoom kRoom;
-	kRoom.Read(kRoomData, 0, 8, pkBg, pkTmpBg, false);
+	kRoom.Read(kRoomData, kBg.Place, kBg.Room, pkBg, pkTmpBg, false);
 
 	ScaleSurface<2>(pkTmpBg, m_pkZoomedBg, 160, 100);
 
@@ -221,15 +223,17 @@ void CDuneTest_Room::Run(const CGameContext& _kCtx)
 {
 	SDL_Surface* pkScreen = _kCtx.Screen;
 	SDL_PixelFormat* pkFmt = pkScreen->format;
+	
+	const Consts::CBginfo& kBg = Consts::akBackgrounds[0];
 
-	Gfx::CAnimated* pkBg = _kCtx.DataManager->Get(Consts::aszBackgroundNames[0], _kCtx.Screen, _kCtx.Frame);
+	Gfx::CAnimated* pkBg = _kCtx.DataManager->Get(Consts::aszBackgroundNames[kBg.Backg], _kCtx.Screen, _kCtx.Frame);
 
 	CBuffer kRoomData;
 	bool bData = HsqTools::UnHsq("PALACE", "SAL", &kRoomData);
 	//bool bData = HsqTools::UnHsq("HARK", "SAL", &kRoomData);
 	//bool bData = HsqTools::UnHsq("VILG", "SAL", &kRoomData);
 	//bool bData = HsqTools::UnHsq("SIET", "SAL", &kRoomData);
-	m_kRoom.Read(kRoomData, 0, 8, pkBg, _kCtx.Screen, false);
+	m_kRoom.Read(kRoomData, kBg.Place, kBg.Room, pkBg, _kCtx.Screen, false);
 }
 
 void CDuneTest_Room::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt)
@@ -293,6 +297,10 @@ void CDuneTest_Planet::Run(const CGameContext& _kCtx)
 	SDL_Surface* pkSurface = m_kPlanet.GetSurface();
 	SDL_Rect kDst = { (pkScreen->w - pkSurface->w) / 2, 0, pkSurface->w, pkSurface->h};
 	SDL_BlitSurface(pkSurface, NULL, pkScreen, &kDst);
+
+	Gfx::CAnimated* pkGui = _kCtx.DataManager->Get("FRESK", _kCtx.Screen, _kCtx.Frame);
+	pkGui->DrawSprite(_kCtx.Screen, 0, 0, 0, Gfx::ComputeDrawMask(255, Gfx::Left, Gfx::Top));
+	pkGui->DrawSprite(_kCtx.Screen, 1, Consts::ScreenW, 0, Gfx::ComputeDrawMask(255, Gfx::Right, Gfx::Top));
 }
 
 void CDuneTest_Planet::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt)

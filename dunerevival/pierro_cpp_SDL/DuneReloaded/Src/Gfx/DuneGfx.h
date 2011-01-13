@@ -95,7 +95,7 @@ namespace Gfx
 			tColor akPal[32];
 			for (Uint32 i = 0; i < 32; ++i)
 			{
-				akPal[i] = SDL_MapRGBA(_pkFmt, i * 8, i * 8 , i * 8, 255);
+				akPal[i] = SDL_MapRGBA(_pkFmt, (255 * i) / 31, (255 * i) / 31 , (255 * i) / 31, 255);
 			}
 			
 			SDL_LockSurface(_pkSprite);
@@ -355,37 +355,10 @@ namespace Gfx
 
 	};
 	
-	class CSentences
-	{
-		
-	public:
-
-		void Release()
-		{
-			m_kStrings.clear();
-		}
-
-		void Init(Uint32 _iSentenceCount)
-		{
-			m_kStrings.resize(_iSentenceCount);
-		}
-
-		void Set(Uint32 _iIndex, const wchar_t* _szString)
-		{
-			m_kStrings[_iIndex] = _szString;
-		}
-		
-	protected:
-	
-		std::vector<std::wstring> m_kStrings;
-		
-	};
-
 	int GetSpriteCount(const CBuffer& _kSrc);
 	bool ReadPal(const CBuffer& _kSrc, SDL_PixelFormat* _pkFmt, tPalette* _pkPalette);
 	bool ReadSequence(const CBuffer& _kSrc, Uint8 _iIndex, CSequence* _pkSeq);
 	void ReadAnim(const CBuffer& _kData, SDL_PixelFormat* _pkFmt, CAnimated* _pkAnimated, bool _bReadSequence);
-	bool ReadSentences(const CBuffer& _kData, CSentences* _pkSentences);
 
 	template <class SpriteType>
 	bool ReadSprite(const CBuffer& _kSrc, Uint8 _iIndex, SpriteType* _pkSprite)
