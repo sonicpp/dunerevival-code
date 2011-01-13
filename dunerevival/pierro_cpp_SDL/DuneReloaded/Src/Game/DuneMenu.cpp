@@ -65,6 +65,23 @@ void CDuneMenu::Run_TestGui(const CGameContext& _kCtx)
 	_kCtx.Font->Print(_kCtx.Screen, XPOS, YPOS(1), ~0, "F2 - facial anim");
 	_kCtx.Font->Print(_kCtx.Screen, XPOS, YPOS(2), ~0, "F3 - rooms");
 	_kCtx.Font->Print(_kCtx.Screen, XPOS, YPOS(3), ~0, "F4 - planet");
+	
+	char szBuffer[256] = { 0 };
+
+	switch (m_eCurrentBg)
+	{
+	case eBg_Character:
+		strcpy(szBuffer, "? / ? : previous / next character");
+		szBuffer[0] = 4;
+		szBuffer[4] = 3;
+		break;
+	case eBg_Planet:
+		strcpy(szBuffer, "mouse wheel : zoom in / out");
+		break;
+	}
+
+	if (szBuffer[0] != 0)
+		_kCtx.Font->Print(_kCtx.Screen, 0, 0, ~0, szBuffer);
 }
 
 void CDuneMenu::UpdateBg(const CGameContext& _kCtx)
