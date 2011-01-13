@@ -92,6 +92,7 @@ namespace Gfx
 {
 	class CAnimated;
 	class CDataManager;
+	class CDuneFont;
 }
 
 struct CGameContext
@@ -100,6 +101,7 @@ struct CGameContext
 	Uint32 Frame;
 	Uint8* FadeAlpha;
 	SDL_Surface* Screen;
+	Gfx::CDuneFont* Font;
 	Gfx::CDataManager* DataManager;
 	tDuneCommands* Commands;
 	bool* Quit;

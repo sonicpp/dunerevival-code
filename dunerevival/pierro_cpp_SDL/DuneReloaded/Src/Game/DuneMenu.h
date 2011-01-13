@@ -15,7 +15,6 @@ public:
 		eBg_Character,
 		eBg_Room,
 		eBg_Planet,
-		eBg_Font,
 	};
 
 	CDuneMenu(const CGameContext& _kCtx);

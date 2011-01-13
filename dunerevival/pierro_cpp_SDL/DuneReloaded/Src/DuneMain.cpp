@@ -5,6 +5,7 @@
 #include "DuneR.h"
 #include "DuneRoot.h"
 #include "DuneGfx.h"
+#include "DuneFont.h"
 #include "DuneHsq.h"
 #include "DuneDataManager.h"
 
@@ -63,9 +64,11 @@ int main(int argc, char* argv[])
 	bool bQuit = false;
 	Uint32 iFrame = 0;
 	Uint8 iFadeAlpha;
+	CGameNode* pkEventNode = NULL;
 	tDuneCommands kCmds;
 	Gfx::CDataManager kDataMgr;
-	CGameNode* pkEventNode = NULL;
+	Gfx::CDuneFont kFont;
+	kFont.Load("DUNECHAR");
 	
 	Uint32 iCount = 0;
 	kDataMgr.Register("ICONES", false) && iCount++;
@@ -79,13 +82,14 @@ int main(int argc, char* argv[])
 		kDataMgr.Register(Consts::aszCharacterNames[i], true) && iCount++;
 
 	Uint32 iExpectedCount = 5 + Consts::NUM_BACKGROUNDS + Consts::NUM_CHARACTERS;
-
+	
 	CGameContext kCtx;
 	kCtx.Screen = pkBackScreen;
 	kCtx.Quit = &bQuit;
 	kCtx.Commands = &kCmds;
 	kCtx.DataManager = &kDataMgr;
 	kCtx.FadeAlpha = &iFadeAlpha;
+	kCtx.Font = &kFont;
 	CUpdateVisitor kUVisitor(kCtx, pkEventNode);
 
 	{

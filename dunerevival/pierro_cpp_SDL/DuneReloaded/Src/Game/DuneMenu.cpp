@@ -3,6 +3,7 @@
 #include "DuneTest.h"
 #include "DuneGfx.h"
 #include "DuneHsq.h"
+#include "DuneFont.h"
 #include "DuneDataManager.h"
 #include "Core/Math.h"
 
@@ -56,6 +57,14 @@ void CDuneMenu::Run_TestGui(const CGameContext& _kCtx)
 
 	Uint32 iIndex = Core::Min(10u, (iFadeTick * 10) / iMaxFaceTick);
 	pkGui->DrawSprite(_kCtx.Screen, 16 + iIndex, Consts::ScreenW / 2, Consts::ScreenH - 63, Gfx::ComputeDrawMask(255, Gfx::Center, Gfx::Top));
+	
+	#define YPOS(Y) (Consts::ScreenH - 38 + (Y) * 9)
+	#define XPOS 95
+
+	_kCtx.Font->Print(_kCtx.Screen, XPOS, YPOS(0), ~0, "F1 - voxel");
+	_kCtx.Font->Print(_kCtx.Screen, XPOS, YPOS(1), ~0, "F2 - facial anim");
+	_kCtx.Font->Print(_kCtx.Screen, XPOS, YPOS(2), ~0, "F3 - rooms");
+	_kCtx.Font->Print(_kCtx.Screen, XPOS, YPOS(3), ~0, "F4 - planet");
 }
 
 void CDuneMenu::UpdateBg(const CGameContext& _kCtx)
@@ -78,9 +87,6 @@ void CDuneMenu::UpdateBg(const CGameContext& _kCtx)
 		break;
 	case eBg_Planet:
 		_kCtx.Commands->Add<CReplaceChildren<CDuneTest_Planet> >()->Init(m_pkPrevious);
-		break;
-	case eBg_Font:
-		_kCtx.Commands->Add<CReplaceChildren<CDuneTest_Font> >()->Init(m_pkPrevious);
 		break;
 	}
 }
@@ -118,9 +124,6 @@ void CDuneMenu::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt)
 				break;
 			case SDLK_F4:
 				SetWantedBg(_kCtx, eBg_Planet);
-				break;
-			case SDLK_F5:
-				SetWantedBg(_kCtx, eBg_Font);
 				break;
 			default:
 				bForward = true;
