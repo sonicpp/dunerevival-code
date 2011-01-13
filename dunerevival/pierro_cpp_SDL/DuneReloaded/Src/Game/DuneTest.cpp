@@ -310,3 +310,75 @@ void CDuneTest_Planet::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _
 	}
 }
 
+// ----------------------------------------------------------------------------------------------
+CDuneTest_Font::CDuneTest_Font(const CGameContext& _kCtx)
+{
+	m_kData.Init(0, 0);
+	bool bData = HsqTools::UnHsq("DUNECHAR", "HSQ", &m_kData);
+	
+	//Uint32 iSize = (m_kData.Size() - 1) * 8;
+	Uint32 iSizeInBytes = m_kData.Size();
+	Uint32 iSizeInBits = iSizeInBytes * 8;
+	
+	for (Uint32 i = 2; i < iSizeInBits / 2 + 1; ++i)
+	{
+		if (iSizeInBits % i == 0)
+			printf("font %i x %i?\n", i, iSizeInBits / i);
+	}
+	
+	Uint32 iW = 0;
+	Uint32 iTotalW = 0;
+	Uint32 iCharCount = 0;
+	Uint8* pcBuffer = m_kData.Data();
+	
+	Uint32 iOffset = 256;
+	for (iCharCount = 0; iCharCount < iSizeInBytes && (iW = pcBuffer[iCharCount]) != 0; ++iCharCount)
+	{
+		m_iCharWidth[iCharCount] = iW;
+		m_iOffset[iCharCount] = iOffset;
+		//iOffset += iW > 4 ? 9 : iW > 2 ? 5 : 3;
+		iOffset += 1 + (iW * 9) / 8;
+		iTotalW += iW;
+		printf("w -> %i\n", iW);
+	}
+	printf("total w -> %i\n", iTotalW);
+	printf("count -> %i\n", iCharCount);
+	printf("size left -> %i\n", iSizeInBytes - iCharCount);
+	printf("end offset -> %i\n", m_iOffset[255] - 256);
+}
+
+void CDuneTest_Font::Run(const CGameContext& _kCtx)
+{
+	tColor iBlack = SDL_MapRGBA(_kCtx.Screen->format, 0, 0, 0, 0);
+	tColor iWhite = SDL_MapRGBA(_kCtx.Screen->format, 255, 255, 255, 255);
+	
+	SDL_LockSurface(_kCtx.Screen);
+	
+	Uint8* pcBuffer = m_kData.Data();
+	tColor* pPixels = (tColor*)_kCtx.Screen->pixels;
+
+	Uint32 iOffset = 0; //_kCtx.CurrentTick / 100;
+	for (Uint32 j = 0; j < 16 && iOffset < 512; ++j)
+	{
+		for (Uint32 i = 0; i < 40 && iOffset < 512; ++i)
+		{
+			for (Uint32 y = 0; y < 9; ++y)
+			{
+				Uint8 iLine = pcBuffer[256 + (iOffset * 9 + y) % 2048];
+				for (Uint32 x = 0; x < 8; ++x)
+				{
+					bool bPlot = (iLine & (1 << (7 - x))) != 0;
+					pPixels[(y + j * 9) * _kCtx.Screen->w + x + i * 8] = bPlot ? iWhite : iBlack;
+				}
+			}
+			++iOffset;
+		}
+	}
+	
+	SDL_UnlockSurface(_kCtx.Screen);
+}
+
+void CDuneTest_Font::HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt)
+{
+}
+

@@ -88,4 +88,23 @@ protected:
 
 };
 
+// ----------------------------------------------------------------------------------------------
+class CDuneTest_Font : public CDuneTest
+{
+
+public:
+
+	CDuneTest_Font(const CGameContext& _kCtx);
+
+	virtual void Run(const CGameContext& _kCtx);
+	virtual void HandleEvent(const CGameContext& _kCtx, const SDL_Event& _kEvt);
+
+protected:
+
+	CBuffer m_kData;
+	Uint8 m_iCharWidth[256];
+	Uint16 m_iOffset[256];
+
+};
+
 #endif

@@ -15,6 +15,9 @@ namespace Consts
 	const Uint32 ScreenW = 320;
 	const Uint32 ScreenH = 200;
 
+	const Uint32 BackW = ScreenW;
+	const Uint32 BackH = 150;
+
 	const Uint32 PlanetW = 300;
 	const Uint32 PlanetH = 160;
 	
