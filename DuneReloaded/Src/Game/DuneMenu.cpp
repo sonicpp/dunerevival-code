@@ -5,7 +5,7 @@
 #include "DuneHsq.h"
 #include "DuneFont.h"
 #include "DuneDataManager.h"
-#include "Core/Math.h"
+#include "BaseMath.h"
 
 CDuneMenu::CDuneMenu(const CGameContext& _kCtx)
 : m_iStartTick(_kCtx.CurrentTick)
