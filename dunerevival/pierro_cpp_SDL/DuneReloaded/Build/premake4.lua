@@ -8,6 +8,9 @@ solution "DuneR"
 	configuration "vs*"
 		defines { "WIN32", "_WIN32", "WIN32_LEAN_AND_MEAN", "_CRT_SECURE_NO_WARNINGS" }
 
+	configuration "codeblocks"
+		defines { "WIN32", "_WIN32", "WIN32_LEAN_AND_MEAN", "_CRT_SECURE_NO_WARNINGS" }
+		
 	configuration "linux"
 		defines { "_LINUX" }
 
