@@ -12,7 +12,7 @@
 
 class CUpdateVisitor : public CGameNode::CVisitor
 {
-	
+
 public:
 
 	CUpdateVisitor(const CGameContext& _kCtx, CGameNode*& _pkEventNode)
@@ -38,10 +38,17 @@ protected:
 
 };
 
+#undef main     //this is a dirty hack to prevent the linker complaining
+                //about "WinMain" being not defined, when compiling under
+                //Windows.
+                //It should be solved
+                //in a cleaner way by choosing appropriate switches to
+                //compile as a Console application
+
 int main(int argc, char* argv[])
 {
 	CDuneRoot* pkGame = new CDuneRoot;
-	
+
 	SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
 
 	/*
@@ -52,7 +59,7 @@ int main(int argc, char* argv[])
 
 	SDL_Surface* pkScreen = SDL_SetVideoMode(Consts::ScreenW, Consts::ScreenH, sizeof(tColor) * 8, SDL_HWSURFACE /*| SDL_DOUBLEBUF | SDL_FULLSCREEN*/);
 	SDL_Surface* pkBackScreen = SDL_CreateRGBSurface(SDL_HWSURFACE, Consts::ScreenW, Consts::ScreenH, pkScreen->format->BitsPerPixel, pkScreen->format->Rmask, pkScreen->format->Gmask, pkScreen->format->Bmask, pkScreen->format->Amask);
-	
+
 	/*
 	SDL_PixelFormat* pkFmt = pkScreen->format;
 	DumpAll(pkFmt);
@@ -70,7 +77,7 @@ int main(int argc, char* argv[])
 	Gfx::CDataManager kDataMgr;
 	Gfx::CDuneFont kFont;
 	kFont.Load("DUNECHAR");
-	
+
 	Uint32 iCount = 0;
 	kDataMgr.Register("ICONES", false) && iCount++;
 	kDataMgr.Register("INTDS", false) && iCount++;
@@ -84,7 +91,7 @@ int main(int argc, char* argv[])
 		kDataMgr.Register(Consts::aszCharacterNames[i], true) && iCount++;
 
 	Uint32 iExpectedCount = 5 + Consts::NUM_BACKGROUNDS + Consts::NUM_CHARACTERS;
-	
+
 	CGameContext kCtx;
 	kCtx.Screen = pkBackScreen;
 	kCtx.Quit = &bQuit;
@@ -125,7 +132,7 @@ int main(int argc, char* argv[])
 		}
 		SDL_BlitSurface(pkBackScreen, NULL, pkScreen, NULL);
 		SDL_Flip(pkScreen);
-		
+
 		SDL_Event kEvent;
 		while (SDL_PollEvent(&kEvent))
 		{

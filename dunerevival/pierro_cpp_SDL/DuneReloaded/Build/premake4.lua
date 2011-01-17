@@ -11,6 +11,15 @@ solution "DuneR"
 	configuration "linux"
 		defines { "_LINUX" }
 
+	configuration "windows"
+		--for SDL strictly
+		includedirs { "C:/SDL-1.2.14/include/SDL/" }
+		libdirs { "C:/SDL-1.2.14/lib/" }
+
+		--for SDL_mixer
+		-- includedirs { "C:/SDL-1.2.14/include/SDL/" } --SDL_mixer.h should be copied into that folder, already included above
+		--libdirs { "C:/SDL-1.2.14/lib/" } --SDL_mixer.lib should be copied into that folder, already included above
+		
 	configuration "Debug"
 		defines { "DEBUG" }
 		flags { "Symbols" }
