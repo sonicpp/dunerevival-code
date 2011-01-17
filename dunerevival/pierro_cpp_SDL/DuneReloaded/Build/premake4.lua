@@ -9,7 +9,7 @@ solution "DuneR"
 		defines { "WIN32", "_WIN32", "WIN32_LEAN_AND_MEAN", "_CRT_SECURE_NO_WARNINGS" }
 
 	configuration "codeblocks"
-		defines { "WIN32", "_WIN32", "WIN32_LEAN_AND_MEAN", "_CRT_SECURE_NO_WARNINGS" }
+		--defines { "WIN32", "_WIN32", "WIN32_LEAN_AND_MEAN", "_CRT_SECURE_NO_WARNINGS" }
 		
 	configuration "linux"
 		defines { "_LINUX" }
@@ -36,7 +36,7 @@ solution "DuneR"
 		kind "ConsoleApp"
 		language "C++"
 		targetdir "../Data"
-		links { "SDL", "SDLmain", "SDL_mixer" }
+		links { "SDL", "SDLmain" }
 
 		includedirs { "../Src/", "../Src/Game", "../Src/Gfx", "../Src/Core" }
 
