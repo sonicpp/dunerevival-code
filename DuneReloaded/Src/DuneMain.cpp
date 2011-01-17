@@ -40,8 +40,9 @@ protected:
 
 #undef main     //this is a dirty hack to prevent the linker complaining
                 //about "WinMain" being not defined, when compiling under
-                //Windows.
-                //It should be solved
+                //Windows, and forcing it to use the "main" below as the
+                //entry point.
+                //TODO: It should be solved
                 //in a cleaner way by choosing appropriate switches to
                 //compile as a Console application
 
