@@ -32,24 +32,26 @@
 
 namespace Dune {
 
-Sprite::Sprite(Common::MemoryReadStream *res, OSystem *system) : _res(res), _system(system) {
+Sprite::Sprite(Common::String filename, OSystem *system) : _system(system) {
+	_res = new Resource(filename);
 }
 
 Sprite::~Sprite() {
+	delete _res;
 }
 
 void Sprite::setPalette() {
 	// The first chunk is the palette chunk
-	_res->seek(0);
-	uint16 chunkSize = _res->readUint16LE();
+	_res->_stream->seek(0);
+	uint16 chunkSize = _res->_stream->readUint16LE();
 	uint16 curPos = 2;
 
-	if (chunkSize > _res->size())
+	if (chunkSize > _res->_stream->size())
 		error("Sprite file is corrupted");
 
 	while (curPos < chunkSize) {
-		byte palStart = _res->readByte();
-		byte palCount = _res->readByte();
+		byte palStart = _res->_stream->readByte();
+		byte palCount = _res->_stream->readByte();
 
 		if (palStart == 0xFF && palCount == 0xFF)
 			break;
@@ -58,9 +60,9 @@ void Sprite::setPalette() {
 		for (uint i = 0; i < palCount; i++) {
 			if (i + palStart > 256)
 				break;
-			palChunk[i * 4 + 0] = _res->readByte() << 2;	// R
-			palChunk[i * 4 + 1] = _res->readByte() << 2;	// G
-			palChunk[i * 4 + 2] = _res->readByte() << 2;	// B
+			palChunk[i * 4 + 0] = _res->_stream->readByte() << 2;	// R
+			palChunk[i * 4 + 1] = _res->_stream->readByte() << 2;	// G
+			palChunk[i * 4 + 2] = _res->_stream->readByte() << 2;	// B
 			palChunk[i * 4 + 3] = 0;	// A
 		}
 		_system->setPalette(palChunk, palStart, palCount);
@@ -70,11 +72,11 @@ void Sprite::setPalette() {
 
 uint16 Sprite::getFrameCount() {
 	// The second chunk is the frame chunk, a list of 16-bit offsets
-	_res->seek(0);
+	_res->_stream->seek(0);
 
-	uint16 chunkSize = _res->readUint16LE();
-	_res->seek(chunkSize);
-	chunkSize = _res->readUint16LE();
+	uint16 chunkSize = _res->_stream->readUint16LE();
+	_res->_stream->seek(chunkSize);
+	chunkSize = _res->_stream->readUint16LE();
 
 	return (chunkSize - 2) / 2;
 }
@@ -84,20 +86,20 @@ FrameInfo Sprite::getFrameInfo(uint16 frameIndex) {
 	// First, get the frame count
 	// This will place the pointer at the start of the frame table
 	uint16 frameCount = getFrameCount();
-	uint16 chunkStart = _res->pos() - 2;
+	uint16 chunkStart = _res->_stream->pos() - 2;
 	assert (frameIndex < frameCount);
 
 	// Now, get the offset of the frame
-	_res->skip(frameIndex * 2);
-	result.offset = _res->readUint16LE();
-	_res->seek(chunkStart + result.offset);
+	_res->_stream->skip(frameIndex * 2);
+	result.offset = _res->_stream->readUint16LE();
+	_res->_stream->seek(chunkStart + result.offset);
 
-	byte b1 = _res->readByte();
-	byte b2 = _res->readByte();
+	byte b1 = _res->_stream->readByte();
+	byte b2 = _res->_stream->readByte();
 	result.isCompressed = b2 & 0x80;
 	result.width = b1 | ((b2 & 0x7f) << 8);
-	result.height = _res->readByte();
-	result.palOffset = _res->readByte();
+	result.height = _res->_stream->readByte();
+	result.palOffset = _res->_stream->readByte();
 
 	// width must be divisible by 4
 	while (result.width % 4 != 0)
@@ -121,7 +123,7 @@ void Sprite::drawFrame(uint16 frameIndex, uint16 x, uint16 y) {
 
 	if (!info.isCompressed) {
 		byte *buf = new byte[totalSize / 2];
-		_res->read(buf, totalSize / 2);
+		_res->_stream->read(buf, totalSize / 2);
 		while (cur < totalSize) {
 			pixel = buf[cur / 2];
 			// Data is stored in half bytes
@@ -135,14 +137,14 @@ void Sprite::drawFrame(uint16 frameIndex, uint16 x, uint16 y) {
 	} else {
 		while (cur < totalSize) {
 			// Data is stored in half bytes, with a simple RLE compression
-			int8 repetition = _res->readSByte();
+			int8 repetition = _res->_stream->readSByte();
 			bool fillSingleValue = (repetition < 0);
 			count = ((repetition < 0) ? -repetition : repetition) + 1;
-			pixel = fillSingleValue ? _res->readByte() : 0;
+			pixel = fillSingleValue ? _res->_stream->readByte() : 0;
 
 			for (int i = 0; i < count; i++) {
 				if (!fillSingleValue)
-					pixel = _res->readByte();
+					pixel = _res->_stream->readByte();
 
 				*dst++ = (pixel & 0xf) + info.palOffset;
 				*dst++ = (pixel >> 4) + info.palOffset;

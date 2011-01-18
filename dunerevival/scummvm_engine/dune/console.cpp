@@ -86,8 +86,7 @@ bool DuneConsole::cmdSentences(int argc, const char **argv) {
 	if (!fileName.contains('.'))
 		fileName += ".hsq";
 
-	Resource *hsqResource = new Resource(fileName);
-	Sentences *s = new Sentences(hsqResource->_stream);
+	Sentences *s = new Sentences(fileName);
 	if (argc == 2) {
 		DebugPrintf("File contains %d sentences\n", s->count());
 	} else {
@@ -97,7 +96,6 @@ bool DuneConsole::cmdSentences(int argc, const char **argv) {
 			DebugPrintf("%s\n", s->getSentence(atoi(argv[2]), true).c_str());
 	}
 	delete s;
-	delete hsqResource;
 
 	return true;
 }
@@ -145,8 +143,7 @@ bool DuneConsole::cmdSprite(int argc, const char **argv) {
 	if (!fileName.contains('.'))
 		fileName += ".hsq";
 
-	Resource *hsqResource = new Resource(fileName);
-	Sprite *s = new Sprite(hsqResource->_stream, _engine->_system);
+	Sprite *s = new Sprite(fileName, _engine->_system);
 	bool showConsole = true;
 
 	uint16 frameCount = s->getFrameCount();
@@ -175,7 +172,6 @@ bool DuneConsole::cmdSprite(int argc, const char **argv) {
 	}
 
 	delete s;
-	delete hsqResource;
 
 	return showConsole;
 }

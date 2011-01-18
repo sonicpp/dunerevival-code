@@ -26,24 +26,18 @@
 #ifndef DUNE_SENTENCES_H
 #define DUNE_SENTENCES_H
 
-namespace Common {
-
-class MemoryReadStream;
-
-}
-
 namespace Dune {
 
 class Sentences {
 public:
-	Sentences(Common::MemoryReadStream *res);
+	Sentences(Common::String filename);
 	~Sentences();
 
 	uint16 count() const { return _sentenceCount; }
 	Common::String getSentence(uint16 index, bool printableOnly = false);
 
 private:
-	Common::MemoryReadStream *_res;
+	Resource *_res;
 	uint16 _sentenceCount;
 };
 

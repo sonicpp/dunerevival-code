@@ -86,12 +86,10 @@ Common::Error DuneEngine::run() {
 	Common::EventManager *eventMan = _system->getEventManager();
 
 	// Show something
-	Resource *hsqResource = new Resource("intds.hsq");
-	Sprite *s = new Sprite(hsqResource->_stream, _system);
+	Sprite *s = new Sprite("intds.hsq", _system);
 	s->setPalette();
 	s->drawFrame(0);
 	delete s;
-	delete hsqResource;
 
 	// Your main even loop should be (invoked from) here.
 	//debug("DuneEngine::go: Hello, World!\n");

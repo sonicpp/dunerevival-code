@@ -28,12 +28,6 @@
 
 #include "dune/dune.h"
 
-namespace Common {
-
-class MemoryReadStream;
-
-}
-
 namespace Dune {
 
 struct FrameInfo {
@@ -46,7 +40,7 @@ struct FrameInfo {
 
 class Sprite {
 public:
-	Sprite(Common::MemoryReadStream *res, OSystem *system);
+	Sprite(Common::String filename, OSystem *system);
 	~Sprite();
 
 	void setPalette();
@@ -55,7 +49,7 @@ public:
 	void drawFrame(uint16 frameIndex, uint16 x = 0, uint16 y = 0);
 
 private:
-	Common::MemoryReadStream *_res;
+	Resource *_res;
 	byte _pal[256 * 3];
 
 	OSystem *_system;

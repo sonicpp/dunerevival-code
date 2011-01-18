@@ -30,28 +30,31 @@
 
 namespace Dune {
 
-Sentences::Sentences(Common::MemoryReadStream *res) : _res(res) {
-	uint16 firstSentence = res->readUint16LE();
-	res->seek(0);
+Sentences::Sentences(Common::String filename) {
+	_res = new Resource(filename);
+
+	uint16 firstSentence = _res->_stream->readUint16LE();
+	_res->_stream->seek(0);
 	_sentenceCount = firstSentence / 2;
 }
 
 Sentences::~Sentences() {
+	delete _res;
 }
 
 Common::String Sentences::getSentence(uint16 index, bool printableOnly) {
 	assert(index <= _sentenceCount);
 
-	_res->seek(index * 2);
-	uint16 start = _res->readUint16LE();
-	_res->seek(start);
+	_res->_stream->seek(index * 2);
+	uint16 start = _res->_stream->readUint16LE();
+	_res->_stream->seek(start);
 
 	// Keep reading till we find a 0xFF marker
 	Common::String sentence;
 	byte cur = 0;
 	
 	while(true) {
-		cur = _res->readByte();
+		cur = _res->_stream->readByte();
 		if ((cur == 0x2E || cur == 0x0D) && printableOnly)
 			continue;
 		if (cur == 0xFF)
