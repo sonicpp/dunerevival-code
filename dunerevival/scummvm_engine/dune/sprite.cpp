@@ -25,7 +25,6 @@
 
 #include "common/memstream.h"
 #include "common/system.h"
-#include "graphics/surface.h"
 
 #include "dune/resource.h"
 #include "dune/sprite.h"
@@ -156,7 +155,6 @@ void Sprite::drawFrame(uint16 frameIndex, uint16 x, uint16 y) {
 	}
 	
 	_system->copyRectToScreen(rect, info.width, x, y, info.width, info.height);
-	_system->updateScreen();
 
 	delete[] rect;
 }

@@ -36,6 +36,7 @@
 
 #include "dune/console.h"
 #include "dune/dune.h"
+#include "dune/font.h"
 #include "dune/resource.h"
 #include "dune/sentences.h"
 #include "dune/sprite.h"
@@ -88,8 +89,22 @@ Common::Error DuneEngine::run() {
 	// Show something
 	Sprite *s = new Sprite("intds.hsq", _system);
 	s->setPalette();
-	s->drawFrame(0);
+	s->drawFrame(0, 0, 92);
 	delete s;
+
+	SpriteFont *sf = new SpriteFont("generic.hsq", _system);
+	sf->drawText("DUNE TEST", 100, 50);
+	delete sf;
+
+	// TODO: There's a bug in this one, so it's disabled for now
+#if 0
+	FixedFont *f = new FixedFont("dunechar.hsq", _system);
+	f->drawText("DUNE TEST", 100, 80, 10);
+	delete f;
+#endif
+
+	// Update the screen so that its contents can be shown
+	_system->updateScreen();
 
 	// Your main even loop should be (invoked from) here.
 	//debug("DuneEngine::go: Hello, World!\n");
