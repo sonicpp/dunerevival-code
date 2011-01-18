@@ -18,8 +18,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
- * $URL: https://svn.scummvm.org:4444/svn/dune/music.cpp $
- * $Id: music.cpp 18 2011-01-06 08:27:54Z md5 $
+ * $URL$
+ * $Id$
  *
  */
 

@@ -18,8 +18,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
- * $URL: https://svn.scummvm.org:4444/svn/dune/console.cpp $
- * $Id: console.cpp 20 2011-01-06 10:19:15Z md5 $
+ * $URL$
+ * $Id$
  *
  */
 
