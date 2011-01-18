@@ -1,0 +1,124 @@
+General information about game files
+
+== Music (Adlib Gold/Adlib/MT-32)
+ARRAKIS.* (AGD/HSQ/M32)
+BAGDAD.* (AGD/HSQ/M32)
+MORNING.* (AGD/HSQ/M32)
+SEKENCE.* (AGD/HSQ/M32)
+SIETCHM.* (AGD/HSQ/M32)
+WARSONG.* (AGD/HSQ/M32)
+WATER.* (AGD/HSQ/M32)
+WORMINTR.* (AGD/HSQ/M32)
+WORMSUIT.* (AGD/HSQ/M32)
+
+== SFX (VOC files)
+SD?.HSQ (0x1 - 0xB)
+
+== Text
+PHRASE1?.HSQ (1-2) - English
+PHRASE2?.HSQ (1-2) - French
+PHRASE31.HSQ (1-2) - German
+COMMAND1.HSQ - English phrases and replies (e.g. "Search for Equipment")
+COMMAND2.HSQ - French phrases and replies
+COMMAND3.HSQ - German phrases and replies
+
+== Movies
+LOGO.HNM
+PRT.HNM
+
+== Unknown files
+CONDIT.HSQ - conditions, perhaps?
+DIALOGUE.HSQ - dialogue logic, perhaps?
+DUNE386.HSQ
+DUNEADL.HSQ - seems to be related to Adlib music somehow
+DUNEAGD.HSQ - seems to be related to Adlib Gold music somehow
+DUNECHAR.HSQ
+DUNEMID.HSQ - seems to be related to MT-32 music somehow
+DUNEPCS.HSQ - seems to be related to PC Speaker music somehow
+DUNESDB.HSQ - seems to be related to SoundBlaster music somehow
+DUNEVGA.HSQ
+GLOBDATA.HSQ - global data, perhaps?
+MAP.HSQ - map logic, perhaps? (the map sprites are in ONMAP.HSQ)
+MAP2.HSQ - map logic, perhaps? (the map sprites are in ONMAP.HSQ)
+ORNYCAB.HSQ - Ornithopter cockpit logic, perhaps? (the Ornithopter sprites are in the other ORNY*.HSQ files)
+SUN.HSQ - sunrise logic, perhaps? (the sunrise sprites are in SUNRS.HSQ)
+VERBIN.HSQ
+
+TABLAT.BIN - tablatures, perhaps? Seems to be music related
+
+HARK.SAL
+PALACE.SAL
+SIET.SAL
+VILG.SAL
+
+
+***** SPRITE FILES *****
+
+== Background sprites (background pictures and props) - used for locations
+BACK.HSQ - Portrait background gradient
+BALCON.HSQ - Palace entrance/balcony
+BOOK.HSQ - Dune info book (background with 2 sand worms)
+BOTA.HSQ - Garden
+BUNK.HSQ - Bunker
+CHANKISS.HSQ - Chani and someone else (Paul?) kissing
+COMM.HSQ - Communications room
+CORR.HSQ - Corridors
+DUNES.HSQ - Dunes
+DUNES2.HSQ - Yet more dunes
+DUNES3.HSQ - Even more dunes!
+EQUI.HSQ - Emerald-colored base + guards
+FRESK.HSQ - House Atreides painting/flag/emblem
+FORT.HSQ - Fortress
+HARK.HSQ - Harkonnen base
+INTDS.HSQ - Sand dunes
+MIRROR.HSQ - Mirror room + mirror screen
+PERS.HSQ - Persons inside the room (not in portraits)
+POR.HSQ - Porch(?)
+PROUGE.HSQ - Weapons rack
+SERRE.HSQ - Oasis trees, rocks etc
+SHAI.HSQ - Desert & sandworms
+SHAI2.HSQ - Desert & sandworms
+SIET0.HSQ - Cave entrance
+SIET1.HSQ - Cave interior (rocks, walls etc)
+SKY.HSQ - Horizon
+STARS.HSQ - Sky + stars
+VER.HSQ - Ring
+VILG.HSQ - Village
+VIS.HSQ - Top-down view of Dune, or the sky (it uses a different palette so it's hard to understand)
+
+== Character sprites (full sprites and animations, e.g. eyes, mouths etc)
+BARO.HSQ - Harkonnen (fat) baron
+CHAN.HSQ - Chani Kynes
+EMPR.HSQ - Emperor
+FEYD.HSQ - Feyd-Rautha Harkonnen
+FRM?.HSQ (1-3) - Fremen characters
+GURN.HSQ - Gurney Halleck (Warmaster)
+HARA.HSQ - Harah (Paul's wife)
+HAWA.HSQ - ???
+IDAH.HSQ - ???
+JESS.HSQ - Jessica Atreides (Paul's mother)
+KYNE.HSQ - ???
+LETO.HSQ - Leto Atreides (Paul's father)
+PAUL.HSQ - Paul Atreides (main hero)
+SMUG.HSQ - Smugglers
+STIL.HSQ - Stilgar
+
+== GUI sprites
+GENERIC.HSQ - Generic sprites (e.g. fonts)
+ICONES.HSQ - GUI elements (graphics, sprites, buttons etc)
+ONMAP.HSQ - Map + sprites
+PALPLAN.HSQ - Palace map
+
+== Sequence sprites
+CREDITS.HSQ - Ending credits
+CRYO.HSQ - Part of intro, Cryo/Virgin logo
+DEATH?.HSQ (1-3) - Death sequence
+FINAL.HSQ - Ending
+SUNRS.HSQ - Sunrise
+
+== Vehicle/action sprites
+ATTACK.HSQ - Attack sprites (lasers etc)
+MOIS.HSQ - Some sort of tank
+ORNY.HSQ - Ornithopter (exterior)
+ORNYPAN.HSQ - Ornithopter (interior, controls)
+ORNYTK.HSQ - Ornithopter (exterior, probably for the flying animation)
