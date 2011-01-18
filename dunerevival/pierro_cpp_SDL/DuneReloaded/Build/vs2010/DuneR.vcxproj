@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|Win32">
+			<Configuration>Debug</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|Win32">
+			<Configuration>Release</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{A7B156F4-661C-6949-B1B8-8796AA423FE0}</ProjectGuid>
+		<RootNamespace>DuneR</RootNamespace>
+		<Keyword>Win32Proj</Keyword>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>MultiByte</CharacterSet>
+		<UseDebugLibraries>true</UseDebugLibraries>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>MultiByte</CharacterSet>
+		<WholeProgramOptimization>true</WholeProgramOptimization>
+		<UseDebugLibraries>false</UseDebugLibraries>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<ImportGroup Label="ExtensionSettings">
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup>
+		<_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+		<OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Data\</OutDir>
+		<IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">obj\Debug\</IntDir>
+		<TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DuneR</TargetName>
+		<LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+		<OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Data\</OutDir>
+		<IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">obj\Release\</IntDir>
+		<TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">DuneR</TargetName>
+		<LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+	</PropertyGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+			<AdditionalIncludeDirectories>..\..\..\..\..\..\external_libs\SDL\include\SDL;..\..\..\..\..\..\external_libs\SDL_image\include;..\..\..\..\..\..\external_libs\SDL_mixer\include;..\..\..\..\..\..\external_libs\SDL_ttf\include;..\..\Src;..\..\Src\Core;..\..\Src\Game;..\..\Src\Gfx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<PreprocessorDefinitions>WIN32;_WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<MinimalRebuild>true</MinimalRebuild>
+			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+			<FunctionLevelLinking>true</FunctionLevelLinking>
+			<PrecompiledHeader></PrecompiledHeader>
+			<WarningLevel>Level3</WarningLevel>
+			<DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+		</ClCompile>
+		<ResourceCompile>
+			<PreprocessorDefinitions>WIN32;_WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<AdditionalIncludeDirectories>..\..\..\..\..\..\external_libs\SDL\include\SDL;..\..\..\..\..\..\external_libs\SDL_image\include;..\..\..\..\..\..\external_libs\SDL_mixer\include;..\..\..\..\..\..\external_libs\SDL_ttf\include;..\..\Src;..\..\Src\Core;..\..\Src\Game;..\..\Src\Gfx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ResourceCompile>
+		<Link>
+			<AdditionalDependencies>SDLmain.lib;SDL.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+			<OutputFile>$(OutDir)DuneR.exe</OutputFile>
+			<AdditionalLibraryDirectories>..\..\..\..\..\..\external_libs\SDL\lib;..\..\..\..\..\..\external_libs\SDL_image\lib;..\..\..\..\..\..\external_libs\SDL_mixer\lib;..\..\..\..\..\..\external_libs\SDL_ttf\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<SubSystem>Console</SubSystem>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<ProgramDataBaseFileName>$(OutDir)DuneR.pdb</ProgramDataBaseFileName>
+			<EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+			<TargetMachine>MachineX86</TargetMachine>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+		<ClCompile>
+			<Optimization>Full</Optimization>
+			<AdditionalIncludeDirectories>..\..\..\..\..\..\external_libs\SDL\include\SDL;..\..\..\..\..\..\external_libs\SDL_image\include;..\..\..\..\..\..\external_libs\SDL_mixer\include;..\..\..\..\..\..\external_libs\SDL_ttf\include;..\..\Src;..\..\Src\Core;..\..\Src\Game;..\..\Src\Gfx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<PreprocessorDefinitions>WIN32;_WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<MinimalRebuild>false</MinimalRebuild>
+			<StringPooling>true</StringPooling>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<FunctionLevelLinking>true</FunctionLevelLinking>
+			<PrecompiledHeader></PrecompiledHeader>
+			<WarningLevel>Level3</WarningLevel>
+			<DebugInformationFormat></DebugInformationFormat>
+		</ClCompile>
+		<ResourceCompile>
+			<PreprocessorDefinitions>WIN32;_WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<AdditionalIncludeDirectories>..\..\..\..\..\..\external_libs\SDL\include\SDL;..\..\..\..\..\..\external_libs\SDL_image\include;..\..\..\..\..\..\external_libs\SDL_mixer\include;..\..\..\..\..\..\external_libs\SDL_ttf\include;..\..\Src;..\..\Src\Core;..\..\Src\Game;..\..\Src\Gfx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ResourceCompile>
+		<Link>
+			<AdditionalDependencies>SDLmain.lib;SDL.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+			<OutputFile>$(OutDir)DuneR.exe</OutputFile>
+			<AdditionalLibraryDirectories>..\..\..\..\..\..\external_libs\SDL\lib;..\..\..\..\..\..\external_libs\SDL_image\lib;..\..\..\..\..\..\external_libs\SDL_mixer\lib;..\..\..\..\..\..\external_libs\SDL_ttf\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<SubSystem>Console</SubSystem>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+			<TargetMachine>MachineX86</TargetMachine>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemGroup>
+		<ClInclude Include="..\..\Src\DuneHsq.h" />
+		<ClInclude Include="..\..\Src\DuneText.h" />
+		<ClInclude Include="..\..\Src\DuneTools.h" />
+		<ClInclude Include="..\..\Src\Core\BaseMath.h" />
+		<ClInclude Include="..\..\Src\Core\CommandQueue.h" />
+		<ClInclude Include="..\..\Src\Core\Tree.h" />
+		<ClInclude Include="..\..\Src\Game\DuneBackGround.h" />
+		<ClInclude Include="..\..\Src\Game\DuneIntro.h" />
+		<ClInclude Include="..\..\Src\Game\DuneMenu.h" />
+		<ClInclude Include="..\..\Src\Game\DuneR.h" />
+		<ClInclude Include="..\..\Src\Game\DuneRoot.h" />
+		<ClInclude Include="..\..\Src\Game\DuneTest.h" />
+		<ClInclude Include="..\..\Src\Gfx\DuneDataManager.h" />
+		<ClInclude Include="..\..\Src\Gfx\DuneFont.h" />
+		<ClInclude Include="..\..\Src\Gfx\DuneGfx.h" />
+		<ClInclude Include="..\..\Src\Gfx\DunePlanet.h" />
+		<ClInclude Include="..\..\Src\Gfx\DuneScn.h" />
+		<ClInclude Include="..\..\Src\Gfx\DuneVoxel.h" />
+	</ItemGroup>
+	<ItemGroup>
+		<ClCompile Include="..\..\Src\DuneHsq.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\DuneMain.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\DuneText.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\DuneTools.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Game\DuneBackGround.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Game\DuneIntro.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Game\DuneMenu.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Game\DuneR.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Game\DuneRoot.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Game\DuneTest.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Gfx\DuneDataManager.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Gfx\DuneFont.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Gfx\DuneGfx.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Gfx\DunePlanet.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Gfx\DuneScn.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\Src\Gfx\DuneVoxel.cpp">
+		</ClCompile>
+	</ItemGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ImportGroup Label="ExtensionTargets">
+	</ImportGroup>
+</Project>

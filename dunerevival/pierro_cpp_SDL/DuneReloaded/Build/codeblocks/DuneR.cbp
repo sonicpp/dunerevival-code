@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="DuneR" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="..\..\Data\DuneR.exe" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="..\..\..\..\..\..\original_material\msdos_floppy" />
+				<Option object_output="obj\Debug" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL\include\SDL" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_image\include" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_mixer\include" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_ttf\include" />
+					<Add directory="..\..\Src" />
+					<Add directory="..\..\Src\Core" />
+					<Add directory="..\..\Src\Game" />
+					<Add directory="..\..\Src\Gfx" />
+				</Compiler>
+				<Linker>
+					<Add library="mingw32" />
+					<Add library="SDLmain" />
+					<Add library="SDL" />
+					<Add library="SDL_image" />
+					<Add library="SDL_mixer" />
+					<Add library="SDL_ttf" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL\lib" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_image\lib" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_mixer\lib" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_ttf\lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="..\..\Data\DuneR.exe" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj\Release" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DNDEBUG" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL\include\SDL" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_image\include" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_mixer\include" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_ttf\include" />
+					<Add directory="..\..\Src" />
+					<Add directory="..\..\Src\Core" />
+					<Add directory="..\..\Src\Game" />
+					<Add directory="..\..\Src\Gfx" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="mingw32" />
+					<Add library="SDLmain" />
+					<Add library="SDL" />
+					<Add library="SDL_image" />
+					<Add library="SDL_mixer" />
+					<Add library="SDL_ttf" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL\lib" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_image\lib" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_mixer\lib" />
+					<Add directory="..\..\..\..\..\..\external_libs\SDL_ttf\lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="..\..\Src\Core\BaseMath.h" />
+		<Unit filename="..\..\Src\Core\CommandQueue.h" />
+		<Unit filename="..\..\Src\Core\Tree.h" />
+		<Unit filename="..\..\Src\DuneHsq.cpp" />
+		<Unit filename="..\..\Src\DuneHsq.h" />
+		<Unit filename="..\..\Src\DuneMain.cpp" />
+		<Unit filename="..\..\Src\DuneText.cpp" />
+		<Unit filename="..\..\Src\DuneText.h" />
+		<Unit filename="..\..\Src\DuneTools.cpp" />
+		<Unit filename="..\..\Src\DuneTools.h" />
+		<Unit filename="..\..\Src\Game\DuneBackGround.cpp" />
+		<Unit filename="..\..\Src\Game\DuneBackGround.h" />
+		<Unit filename="..\..\Src\Game\DuneIntro.cpp" />
+		<Unit filename="..\..\Src\Game\DuneIntro.h" />
+		<Unit filename="..\..\Src\Game\DuneMenu.cpp" />
+		<Unit filename="..\..\Src\Game\DuneMenu.h" />
+		<Unit filename="..\..\Src\Game\DuneR.cpp" />
+		<Unit filename="..\..\Src\Game\DuneR.h" />
+		<Unit filename="..\..\Src\Game\DuneRoot.cpp" />
+		<Unit filename="..\..\Src\Game\DuneRoot.h" />
+		<Unit filename="..\..\Src\Game\DuneTest.cpp" />
+		<Unit filename="..\..\Src\Game\DuneTest.h" />
+		<Unit filename="..\..\Src\Gfx\DuneDataManager.cpp" />
+		<Unit filename="..\..\Src\Gfx\DuneDataManager.h" />
+		<Unit filename="..\..\Src\Gfx\DuneFont.cpp" />
+		<Unit filename="..\..\Src\Gfx\DuneFont.h" />
+		<Unit filename="..\..\Src\Gfx\DuneGfx.cpp" />
+		<Unit filename="..\..\Src\Gfx\DuneGfx.h" />
+		<Unit filename="..\..\Src\Gfx\DunePlanet.cpp" />
+		<Unit filename="..\..\Src\Gfx\DunePlanet.h" />
+		<Unit filename="..\..\Src\Gfx\DuneScn.cpp" />
+		<Unit filename="..\..\Src\Gfx\DuneScn.h" />
+		<Unit filename="..\..\Src\Gfx\DuneVoxel.cpp" />
+		<Unit filename="..\..\Src\Gfx\DuneVoxel.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
