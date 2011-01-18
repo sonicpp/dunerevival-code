@@ -1,0 +1,92 @@
+# depslib dependency file v1.0
+1295364101 source:c:\shared\scummvm_nightly\tools\create_project\create_project.cpp
+	"create_project.h"
+	"codeblocks.h"
+	<fstream>
+	<iostream>
+	<stack>
+	<algorithm>
+	<iomanip>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<windows.h>
+	<sstream>
+	<sys/param.h>
+	<sys/stat.h>
+	<dirent.h>
+
+1294747411 c:\shared\scummvm_nightly\tools\create_project\create_project.h
+	<map>
+	<list>
+	<string>
+	<cassert>
+
+1294747411 c:\shared\scummvm_nightly\tools\create_project\codeblocks.h
+	"create_project.h"
+
+1294747411 c:\shared\scummvm_nightly\tools\create_project\msvc.h
+	"create_project.h"
+
+1294747411 c:\shared\scummvm_nightly\tools\create_project\visualstudio.h
+	"msvc.h"
+
+1294747411 c:\shared\scummvm_nightly\tools\create_project\msbuild.h
+	"msvc.h"
+
+1294747411 source:c:\shared\scummvm_nightly\tools\create_project\msbuild.cpp
+	"msbuild.h"
+	<fstream>
+	<algorithm>
+
+1294747411 source:c:\shared\scummvm_nightly\tools\create_project\msvc.cpp
+	"msvc.h"
+	<fstream>
+	<algorithm>
+
+1294747411 source:c:\shared\scummvm_nightly\tools\create_project\visualstudio.cpp
+	"visualstudio.h"
+	<fstream>
+	<algorithm>
+
+1294747411 source:c:\shared\scummvm_nightly\tools\create_project\codeblocks.cpp
+	"codeblocks.h"
+	<fstream>
+
+1294747411 source:c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\msbuild.cpp
+	"msbuild.h"
+	<fstream>
+	<algorithm>
+
+1294747411 c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\msbuild.h
+	"msvc.h"
+
+1294747411 c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\msvc.h
+	"create_project.h"
+
+1294747411 c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\create_project.h
+	<map>
+	<list>
+	<string>
+	<cassert>
+
+1294747411 source:c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\msvc.cpp
+	"msvc.h"
+	<fstream>
+	<algorithm>
+
+1294747411 source:c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\visualstudio.cpp
+	"visualstudio.h"
+	<fstream>
+	<algorithm>
+
+1294747411 c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\visualstudio.h
+	"msvc.h"
+
+1294747411 source:c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\codeblocks.cpp
+	"codeblocks.h"
+	<fstream>
+
+1294747411 c:\documents and settings\mathieu\my documents\perso\dunerevival\svn\external_libs\scummvm\tools\create_project\codeblocks.h
+	"create_project.h"
+
