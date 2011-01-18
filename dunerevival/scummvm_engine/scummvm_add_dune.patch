@@ -1,0 +1,42 @@
+Index: base/plugins.cpp
+===================================================================
+--- base/plugins.cpp	(revision 55230)
++++ base/plugins.cpp	(working copy)
+@@ -109,6 +109,9 @@
+ 		#if PLUGIN_ENABLED_STATIC(DRASCULA)
+ 		LINK_PLUGIN(DRASCULA)
+ 		#endif
++		#if PLUGIN_ENABLED_STATIC(DUNE)
++		LINK_PLUGIN(DUNE)
++		#endif
+ 		#if PLUGIN_ENABLED_STATIC(GOB)
+ 		LINK_PLUGIN(GOB)
+ 		#endif
+Index: configure
+===================================================================
+--- configure	(revision 55230)
++++ configure	(working copy)
+@@ -85,6 +85,7 @@
+ add_engine cruise "Cinematique evo 2" yes
+ add_engine draci "Dragon History" yes
+ add_engine drascula "Drascula: The Vampire Strikes Back" yes
++add_engine dune "Dune" no
+ add_engine gob "Gobli*ns" yes
+ add_engine groovie "Groovie" yes "groovie2"
+ add_engine groovie2 "Groovie 2 games" no
+Index: engines/engines.mk
+===================================================================
+--- engines/engines.mk	(revision 55230)
++++ engines/engines.mk	(working copy)
+@@ -46,6 +46,11 @@
+ MODULES += engines/drascula
+ endif
+ 
++ifdef ENABLE_DUNE
++DEFINES += -DENABLE_DUNE=$(ENABLE_DUNE)
++MODULES += engines/dune
++endif
++
+ ifdef ENABLE_GOB
+ DEFINES += -DENABLE_GOB=$(ENABLE_GOB)
+ MODULES += engines/gob
