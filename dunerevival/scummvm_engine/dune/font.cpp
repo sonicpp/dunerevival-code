@@ -69,13 +69,13 @@ void FixedFont::drawText(Common::String text, uint16 x, uint16 y, byte color) {
 			charLine = _res->_stream->readByte();
 
 			for (uint charX = 0; charX < _charWidth[curChar]; charX++) {
-				//bool bPlot = (charLine & (1 << (7 - charX))) != 0;
-				//if (bPlot)
-				if (charLine & (1 << charX))
+				if (charLine & 0x80)
 					dest[charX] = color;
 
-				dest += SCREEN_WIDTH;
+				charLine <<= 1;
 			}
+
+			dest += SCREEN_WIDTH;
 		}
 
 		curX += _charWidth[curChar];

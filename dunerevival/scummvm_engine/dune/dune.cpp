@@ -96,12 +96,9 @@ Common::Error DuneEngine::run() {
 	sf->drawText("DUNE TEST", 100, 50);
 	delete sf;
 
-	// TODO: There's a bug in this one, so it's disabled for now
-#if 0
 	FixedFont *f = new FixedFont("dunechar.hsq", _system);
-	f->drawText("DUNE TEST", 100, 80, 10);
+	f->drawText("DUNE TEST", 100, 120, 10);
 	delete f;
-#endif
 
 	// Update the screen so that its contents can be shown
 	_system->updateScreen();
