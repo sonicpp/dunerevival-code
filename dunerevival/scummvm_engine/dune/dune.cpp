@@ -96,7 +96,10 @@ Common::Error DuneEngine::run() {
 	sf->drawText("DUNE TEST", 100, 50);
 	delete sf;
 
-	FixedFont *f = new FixedFont("dunechar.hsq", _system);
+	// TODO: use game flags instead
+	Common::String charFile = (Common::File::exists("dune.dat")) ? "dnchar.bin" : "dunechar.hsq";
+
+	FixedFont *f = new FixedFont(charFile, _system);
 	f->drawText("DUNE TEST", 100, 120, 10);
 	delete f;
 

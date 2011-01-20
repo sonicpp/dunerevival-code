@@ -67,49 +67,82 @@ private:
 
 Resource::Resource(Common::String filename) {
 	Common::File f;
-	
-	if (f.open(filename)) {
-		uint16 origSize = f.size();
-		byte *origData = new byte[origSize];
-		f.read(origData, origSize);
-		f.close();
+	uint32 origSize = 0;
+	byte *origData = 0;
 
-		_size = origSize;
-		_data = origData;
+	filename.toUppercase();
 
-		if (_size < 6)
-			error("File %s is too small to be an HSQ file", filename.c_str());
+	// FIXME: Don't reload the whole file table
+	// TODO: Use game flags instead of searching for DUNE.DAT
+	// TODO: This isn't really good for large files (e.g. videos),
+	// as the file contents are loaded in memory. Consider using
+	// SeekableSubReadStream instead
+	if (f.open("DUNE.DAT")) {
+		// CD version
+		uint16 entries = f.readUint16LE();
+		char cdFileName[16];
+		uint32 cdFileOffset = 0;
 
-		// Get a checksum of the first 6 bytes
-		byte sum = 0;	// sum must be a byte, so that the salt value can overflow it to 0xAB
-		for (int i = 0; i < 6; i++)
-			sum += origData[i];
+		for (uint16 i = 0; i < entries; i++) {
+			f.read(cdFileName, 16);
+			origSize = f.readUint32LE();
+			cdFileOffset = f.readUint32LE();
+			f.readByte();	// 0
 
-		if (sum == HSQ_PACKED_CHECKSUM) {	// HSQ compression
-			// Details taken from http://wiki.multimedia.cx/index.php?title=HNM_(1)
+			if (filename == cdFileName) {
+				f.seek(cdFileOffset);
+				break;
+			}
+		}
 
-			// Read 6 byte header
-			_size = READ_LE_UINT16(origData);
-			assert (*(origData + 2) == 0);	// must be 0
-			uint16 packedSize = READ_LE_UINT16(origData + 3);
-			if (packedSize != origSize)
-				error("File %s is corrupt - size is %d, it should be %d", filename.c_str(), origSize, packedSize);
-			// one byte salt, to adjust checksum to 171 (0xAB)
-
-			_data = new byte[_size];
-			memset(_data, 0, _size);
-
-			hsqUnpack(origData + 6, _data);
-
-			// Delete the original packed data
-			delete[] origData;
-		}	// if (sum == PACKED_CHECKSUM)
-
-		// Create a memory read stream of the final data
-		_stream = new Common::MemoryReadStream(_data, _size);
+		if (!cdFileOffset)
+			error("File %s not found in dune.dat", filename.c_str());
 	} else {
-		error("Error reading from file %s", filename.c_str());
+		// Floppy version
+		if (f.open(filename)) {
+			origSize = f.size();
+		} else {
+			error("Error reading from file %s", filename.c_str());
+		}
 	}
+
+	origData = new byte[origSize];
+	f.read(origData, origSize);
+	f.close();
+
+	_size = origSize;
+	_data = origData;
+
+	if (_size < 6)
+		error("File %s is too small to be an HSQ file", filename.c_str());
+
+	// Get a checksum of the first 6 bytes
+	byte sum = 0;	// sum must be a byte, so that the salt value can overflow it to 0xAB
+	for (int i = 0; i < 6; i++)
+		sum += _data[i];
+
+	if (sum == HSQ_PACKED_CHECKSUM) {	// HSQ compression
+		// Details taken from http://wiki.multimedia.cx/index.php?title=HNM_(1)
+
+		// Read 6 byte header
+		_size = READ_LE_UINT16(_data);
+		assert (*(_data + 2) == 0);	// must be 0
+		uint16 packedSize = READ_LE_UINT16(_data + 3);
+		if (packedSize != origSize)
+			error("File %s is corrupt - size is %d, it should be %d", filename.c_str(), origSize, packedSize);
+		// one byte salt, to adjust checksum to 171 (0xAB)
+
+		_data = new byte[_size];
+		memset(_data, 0, _size);
+
+		hsqUnpack(origData + 6, _data);
+
+		// Delete the original packed data
+		delete[] origData;
+	}	// if (sum == PACKED_CHECKSUM)
+
+	// Create a memory read stream of the final data
+	_stream = new Common::MemoryReadStream(_data, _size);
 }
 
 Resource::~Resource() {
