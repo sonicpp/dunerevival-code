@@ -95,6 +95,25 @@ static const DuneGameDescription gameDescriptions[] = {
 #endif
 	},
 
+	{
+		// English CD version
+		{
+			"dune",
+			"CD",
+			{"dune.dat", 0, "f096565944ab48cf4cb6cbf389384e6f", 397794384},
+			Common::EN_ANY,
+			Common::kPlatformPC,
+			ADGF_CD,
+			GUIO_NONE
+		},
+#if 0
+		GID_DUNE,
+		0,
+		0,	// can be GF_CD, for example
+		3,
+#endif
+	},
+
 #if 0
 	{ AD_TABLE_END_MARKER, 0, 0, 0, 0 }
 #else
