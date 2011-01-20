@@ -21,18 +21,21 @@ CDuneTest_Voxel::CDuneTest_Voxel(const CGameContext& _kCtx)
 
 struct CHeightMap
 {
-	CHeightMap(SDL_PixelFormat* _pkFmt, SDL_Surface* _pkHm, SDL_Surface* _pkMap)
+	CHeightMap(SDL_PixelFormat* _pkFmt, SDL_Surface* _pkHm_Smooth, SDL_Surface* _pkHm_Sharp, SDL_Surface* _pkMap)
 	: m_kFmt(*_pkFmt)
-	, m_pkHm(_pkHm)
+	, m_pkHm_Smooth(_pkHm_Smooth)
+	, m_pkHm_Sharp(_pkHm_Sharp)
 	, m_pkMap(_pkMap)
 	{
-		SDL_LockSurface(m_pkHm);
+		SDL_LockSurface(m_pkHm_Smooth);
+		SDL_LockSurface(m_pkHm_Sharp);
 		SDL_LockSurface(m_pkMap);
 	}
 
 	~CHeightMap()
 	{
-		SDL_UnlockSurface(m_pkHm);
+		SDL_UnlockSurface(m_pkHm_Smooth);
+		SDL_UnlockSurface(m_pkHm_Sharp);
 		SDL_UnlockSurface(m_pkMap);
 	}
 
@@ -41,7 +44,7 @@ struct CHeightMap
 		Uint32 iOffsetH = (_iX % 256) * 256 + (_iY % 256);
 		Uint32 iOffsetC = (((300 * _iX) / 256) % 256) * 256 + (((300 * _iY) / 256) % 256);
 
-		Uint8* piHeights = (Uint8*)m_pkHm->pixels;
+		Uint8* piHeights = (Uint8*)m_pkHm_Smooth->pixels;
 		Uint8* piColors = (Uint8*)m_pkMap->pixels;
 
 		*_piHeight = piHeights[iOffsetH];
@@ -49,7 +52,8 @@ struct CHeightMap
 	}
 
 	SDL_PixelFormat m_kFmt;
-	SDL_Surface* m_pkHm;
+	SDL_Surface* m_pkHm_Smooth;
+	SDL_Surface* m_pkHm_Sharp;
 	SDL_Surface* m_pkMap;
 };
 
@@ -62,11 +66,12 @@ void CDuneTest_Voxel::Run(const CGameContext& _kCtx)
 		SDL_FillRect(_kCtx.Screen, &kR, m_akSkyColors[i]);
 	}
 
-	static SDL_Surface* pkHm = SDL_LoadBMP("Test/test_hm.bmp");
+	static SDL_Surface* pkHm_Smooth = SDL_LoadBMP("Test/test_hm_smooth.bmp");
+	static SDL_Surface* pkHm_Sharp = SDL_LoadBMP("Test/test_hm_sharp.bmp");
 	static SDL_Surface* pkMap = SDL_LoadBMP("Test/test_map.bmp");
 
 	CDuneVoxel::CamInfo kCi;
-	CHeightMap kHm(_kCtx.Screen->format, pkHm, pkMap);
+	CHeightMap kHm(_kCtx.Screen->format, pkHm_Smooth, pkHm_Sharp, pkMap);
 	kCi.Tick = _kCtx.CurrentTick;
 	m_kVoxel.FillSamples(kCi, kHm);
 	m_kVoxel.Render(_kCtx.Screen);

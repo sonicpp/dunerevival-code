@@ -27,7 +27,7 @@ public:
 
 protected:
 
-	typedef CDuneVoxel::Renderer<Consts::ScreenW, Consts::ScreenH, 48, 8> tVoxel;
+	typedef CDuneVoxel::Renderer<Consts::BackW, Consts::BackH, 40, 6> tVoxel;
 	tVoxel m_kVoxel;
 
 	tColor m_akSkyColors[Consts::ScreenH];

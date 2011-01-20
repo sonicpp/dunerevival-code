@@ -24,8 +24,6 @@ public:
 protected:
 
 	CBuffer m_kData;
-	Uint8 m_iCharWidth[256];
-	Uint16 m_iOffset[256];
 
 };
 
