@@ -49,9 +49,9 @@ public:
 			Sint32 iSH = _iSampleH;
 			Sint32 iZ = _iZ;
 
-			Sint32 iCamH = 256;
+			Sint32 iCamH = 300;
 			Sint32 iDeltaH = iSH - iCamH;
-			Sint32 iScreenH = 4 * iDeltaH / iZ + 100;
+			Sint32 iScreenH = 3 * iDeltaH / iZ + Consts::BackH / 2;
 			
 			return iScreenH;
 		}
@@ -83,7 +83,7 @@ public:
 
 	public:
 	
-		enum { TOTAL_SIZE = VoxelDataGlobalSize<WIDTH, SAMPLELINECOUNT - 1, SAMPLELINECOUNT, DIVGROUP>::SIZE };
+		enum { TOTAL_SIZE = SAMPLELINECOUNT + VoxelDataGlobalSize<WIDTH, SAMPLELINECOUNT - 1, SAMPLELINECOUNT, DIVGROUP>::SIZE };
 
 		static inline Uint32 SampleCount(Uint32 _iSampleLineIndex)
 		{
@@ -97,7 +97,7 @@ public:
 			Uint32 iTotalCount = 0;
 			for (Uint32 i = 0; i < SAMPLELINECOUNT; ++i)
 			{
-				Uint32 iCount = SampleCount(i);
+				Uint32 iCount = SampleCount(i) + 1;
 
 				m_aiSampleHeights[i] = m_aiDataHeights + iTotalCount;
 				m_aiSampleColors[i] = m_aiDataColors + iTotalCount;
@@ -129,49 +129,6 @@ public:
 			);
 		}
 		
-		void Render(SDL_Surface* _pkDest)
-		{
-			SDL_LockSurface(_pkDest);
-			tColor* piPixels = (tColor*)_pkDest->pixels;
-
-			Uint32 iPixelOffset = (HEIGHT - 1) * WIDTH;
-
-			for (Sint32 i = 0; i < WIDTH; ++i, ++iPixelOffset)
-			{
-				tColor* piColumn = piPixels + iPixelOffset;
-				Sint32 iMaxH = 0;
-				Uint32 iCoeff = (i << 16) / WIDTH;
-
-				for (Uint32 iSample = 0; iSample < SAMPLELINECOUNT; ++iSample)
-				{
-					Uint32 iDiv = SampleCount(iSample);
-					Uint32 iIndex = (iCoeff * iDiv) >> 16;
-					Sint32 iH = m_aiSampleHeights[iSample][iIndex];
-					tColor iC = m_aiGroundPalette[m_aiSampleColors[iSample][iIndex]];
-
-					if (iH > HEIGHT)
-						iH = HEIGHT;
-
-					while (iMaxH < iH)
-					{
-						*piColumn = iC;
-						piColumn -= WIDTH;
-						++iMaxH;
-					}
-				}
-				
-				/*
-				for (; iMaxH < HEIGHT; ++iMaxH)
-				{
-					*piColumn = 0xffffffff;
-					piColumn -= WIDTH;
-				}
-				*/
-			}
-
-			SDL_UnlockSurface(_pkDest);
-		}
-
 		template <class HeightMap>
 		void FillSamples(const CamInfo& _kCamInfos, const HeightMap& _kHm)
 		{
@@ -189,14 +146,12 @@ public:
 			for (Sint32 i = 0; i < SAMPLELINECOUNT; ++i)
 			{
 				Uint32 iSampleIndex = SAMPLELINECOUNT - 1 - i;
-				Sint32 iSampleCount = WIDTH >> (i / DIVGROUP);
+				Sint32 iSampleCount =  1 + (WIDTH >> (i / DIVGROUP));
 				
-				Sint32 iDeltaX = (iX1 - iX0) / (2 * iSampleCount);
-				Sint32 iDeltaY = (iY1 - iY0) / (2 * iSampleCount);
+				Sint32 iDeltaX = (iX1 - iX0) / iSampleCount;
+				Sint32 iDeltaY = (iY1 - iY0) / iSampleCount;
 				Sint32 iX = iX0 + iDeltaX;
 				Sint32 iY = iY0 + iDeltaY;
-				iDeltaX *= 2;
-				iDeltaY *= 2;
 				
 				for (Sint32 j = 0; j < iSampleCount; ++j)
 				{
@@ -219,9 +174,84 @@ public:
 			}
 		}
 
+		void Render(SDL_Surface* _pkDest)
+		{
+			SDL_LockSurface(_pkDest);
+			tColor* piPixels = (tColor*)_pkDest->pixels;
+
+			Uint32 iPixelOffset = (HEIGHT - 1) * WIDTH;
+
+			for (Sint32 i = 0; i < WIDTH; ++i, ++iPixelOffset)
+			{
+				tColor* piColumn = piPixels + iPixelOffset;
+				Sint32 iMaxH = 0;
+				Sint32 iCoeff = (i << 16) / WIDTH;
+				
+				Sint32 iLastColorIndex = m_aiSampleColors[0][(iCoeff * SampleCount(0)) >> 16] << 16;
+
+				for (Uint32 iSample = 0; iSample < SAMPLELINECOUNT; ++iSample)
+				{
+					Sint32 iDiv = SampleCount(iSample);
+					
+					tHeight* pHeights = m_aiSampleHeights[iSample];
+					tColorIndex* pColors = m_aiSampleColors[iSample];
+					
+					Sint32 iIndex0 = (iCoeff * iDiv) >> 16;
+					Sint32 iIndex1 = iIndex0 + 1;
+					
+					Sint32 iX0 = (iIndex0 * WIDTH) / iDiv;
+					Sint32 iX1 = (iIndex1 * WIDTH) / iDiv;
+					Sint32 iRatio = ((i - iX0) << 16) / (iX1 - iX0);
+
+					Sint32 iH0 = pHeights[iIndex0];
+					Sint32 iH1 = pHeights[iIndex1];
+					Sint32 iH = ((iH0 << 16) + (iH1 - iH0) * iRatio) >> 16;
+
+					Sint32 iC0 = pColors[iIndex0];
+					Sint32 iC1 = pColors[iIndex1];
+					Sint32 iC = ((iC0 << 16) + (iC1 - iC0) * iRatio) >> 16;
+
+					if (iH > HEIGHT)
+						iH = HEIGHT;
+
+					Sint32 iWantedColorIndex = iC << 16;
+					
+					//tColor iPipo = m_aiGroundPalette[iC];
+					
+					if (iMaxH < iH)
+					{
+						Sint32 iDeltaColorIndex = (iWantedColorIndex - iLastColorIndex) / (iH - iMaxH);
+
+						while (iMaxH < iH)
+						{
+							iLastColorIndex += iDeltaColorIndex;
+							*piColumn = m_aiGroundPalette[iLastColorIndex >> 16];
+							//*piColumn = iPipo;
+							piColumn -= WIDTH;
+							++iMaxH;
+						}
+					}
+					
+					iLastColorIndex = iWantedColorIndex;
+				}
+				
+				/*
+				for (; iMaxH < HEIGHT; ++iMaxH)
+				{
+					*piColumn = 0xffffffff;
+					piColumn -= WIDTH;
+				}
+				*/
+			}
+
+			SDL_UnlockSurface(_pkDest);
+		}
+
 	protected:
 
 		tColor m_aiGroundPalette[256];
+		
+		tColorIndex m_aiBuffer[WIDTH * HEIGHT];
 
 		tHeight* m_aiSampleHeights[SAMPLELINECOUNT];
 		tColorIndex* m_aiSampleColors[SAMPLELINECOUNT];
