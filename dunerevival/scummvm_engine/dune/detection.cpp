@@ -23,125 +23,55 @@
  *
  */
 
-#include "base/plugins.h"
 
 #include "engines/advancedDetector.h"
-#include "common/file.h"
+
+#include "common/savefile.h"
+#include "common/system.h"
+#include "common/util.h"
+
+#include "base/plugins.h"
 
 #include "dune/dune.h"
 
-namespace Dune {
-
-struct DuneGameDescription {
-	ADGameDescription desc;
-	
-	// Sample extra fields, if needed
-#if 0
-	int gameID;
-	int gameType;
-	uint32 features;
-	uint16 version;
-#endif
-};
-
-#if 0
-uint32 DuneEngine::getGameID() const {
-	return _gameDescription->gameID;
-}
-
-uint32 DuneEngine::getFeatures() const {
-	return _gameDescription->features;
-}
-
-Common::Platform DuneEngine::getPlatform() const {
-	return _gameDescription->desc.platform;
-}
-
-uint16 DuneEngine::getVersion() const {
-	return _gameDescription->version;
-}
-#endif
-
-}
-
 static const PlainGameDescriptor duneGames[] = {
-	{"dune", "Dune"},
-	{0, 0}
+	{ "dune", "Dune" },
+	{ 0, 0 }
 };
 
 
 namespace Dune {
 
-using Common::GUIO_NONE;
-using Common::GUIO_NOSPEECH;
-
-static const DuneGameDescription gameDescriptions[] = {
+static const ADGameDescription gameDescriptions[] = {
+	// English floppy version
 	{
-		// English floppy version
+		"dune",
+		"",
 		{
-			"dune",
-			"",
 			{"dunes.hsq", 0, "c290b19cfc87333ed2208fa8ffba655d", 21874},
-			Common::EN_ANY,
-			Common::kPlatformPC,
-			ADGF_NO_FLAGS,
-			GUIO_NONE
+			{0,0,0,0}
 		},
-#if 0
-		GID_DUNE,
-		0,
-		0,	// can be GF_CD, for example
-		3,
-#endif
-	},
-
-	{
-		// English CD version
-		{
-			"dune",
-			"CD",
-			{"dune.dat", 0, "f096565944ab48cf4cb6cbf389384e6f", 397794384},
-			Common::EN_ANY,
-			Common::kPlatformPC,
-			ADGF_CD,
-			GUIO_NONE
-		},
-#if 0
-		GID_DUNE,
-		0,
-		0,	// can be GF_CD, for example
-		3,
-#endif
-	},
-
-#if 0
-	{ AD_TABLE_END_MARKER, 0, 0, 0, 0 }
-#else
-	{ AD_TABLE_END_MARKER }
-#endif
-
-};
-
-/**
- * The fallback game descriptor used by the Dune engine's fallbackDetector.
- * Contents of this struct are to be overwritten by the fallbackDetector.
- */
-static DuneGameDescription g_fallbackDesc = {
-	{
-		"",
-		"",
-		AD_ENTRY1(0, 0), // This should always be AD_ENTRY1(0, 0) in the fallback descriptor
-		Common::UNK_LANG,
+		Common::EN_ANY,
 		Common::kPlatformPC,
 		ADGF_NO_FLAGS,
-		GUIO_NONE
+		Common::GUIO_NOSPEECH
 	},
-#if 0
-	0,
-	0,
-	0,
-	0,
-#endif
+
+	// English CD version
+	{
+		"dune",
+		"CD",
+		{
+			{"dune.dat", 0, "f096565944ab48cf4cb6cbf389384e6f", 397794384},
+			{0,0,0,0}
+		},
+		Common::EN_ANY,
+		Common::kPlatformPC,
+		ADGF_CD,
+		Common::GUIO_NONE
+	},
+
+	AD_TABLE_END_MARKER
 };
 
 } // End of namespace Dune
@@ -150,7 +80,7 @@ static const ADParams detectionParams = {
 	// Pointer to ADGameDescription or its superset structure
 	(const byte *)Dune::gameDescriptions,
 	// Size of that superset structure
-	sizeof(Dune::DuneGameDescription),
+	sizeof(ADGameDescription),
 	// Number of bytes to compute MD5 sum for
 	5000,
 	// List of all engine targets
@@ -185,9 +115,6 @@ public:
 
 	virtual bool hasFeature(MetaEngineFeature f) const;
 	virtual bool createInstance(OSystem *syst, Engine **engine, const ADGameDescription *desc) const;
-
-	const ADGameDescription *fallbackDetect(const Common::FSList &fslist) const;
-
 };
 
 bool DuneMetaEngine::hasFeature(MetaEngineFeature f) const {
@@ -201,28 +128,10 @@ bool Dune::DuneEngine::hasFeature(EngineFeature f) const {
 }
 
 bool DuneMetaEngine::createInstance(OSystem *syst, Engine **engine, const ADGameDescription *desc) const {
-	const Dune::DuneGameDescription *gd = (const Dune::DuneGameDescription *)desc;
-	if (gd) {
-		*engine = new Dune::DuneEngine(syst, gd);
+	if (desc) {
+		*engine = new Dune::DuneEngine(syst, desc);
 	}
-	return gd != 0;
-}
-
-const ADGameDescription *DuneMetaEngine::fallbackDetect(const Common::FSList &fslist) const {
-	// Set the default values for the fallback descriptor's ADGameDescription part.
-	Dune::g_fallbackDesc.desc.language = Common::UNK_LANG;
-	Dune::g_fallbackDesc.desc.platform = Common::kPlatformPC;
-	Dune::g_fallbackDesc.desc.flags = ADGF_NO_FLAGS;
-
-#if 0
-	// Set default values for the fallback descriptor's DuneGameDescription part.
-	Dune::g_fallbackDesc.gameID = 0;
-	Dune::g_fallbackDesc.features = 0;
-	Dune::g_fallbackDesc.version = 3;
-#endif
-
-	//return (const ADGameDescription *)&Dune::g_fallbackDesc;
-	return NULL;
+	return desc != 0;
 }
 
 #if PLUGIN_ENABLED_DYNAMIC(DUNE)

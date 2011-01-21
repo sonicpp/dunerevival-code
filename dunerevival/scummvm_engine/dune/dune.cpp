@@ -43,7 +43,7 @@
 
 namespace Dune {
  
-DuneEngine::DuneEngine(OSystem *syst, const DuneGameDescription *gameDesc)
+DuneEngine::DuneEngine(OSystem *syst, const ADGameDescription *gameDesc)
 	: Engine(syst), _gameDescription(gameDesc) {
 	// Put your engine in a sane state, but do nothing big yet;
 	// in particular, do not load data from files; rather, if you
@@ -96,9 +96,7 @@ Common::Error DuneEngine::run() {
 	sf->drawText("DUNE TEST", 100, 50);
 	delete sf;
 
-	// TODO: use game flags instead
-	Common::String charFile = (Common::File::exists("dune.dat")) ? "dnchar.bin" : "dunechar.hsq";
-
+	Common::String charFile = isCD() ? "dnchar.bin" : "dunechar.hsq";
 	FixedFont *f = new FixedFont(charFile, _system);
 	f->drawText("DUNE TEST", 100, 120, 10);
 	delete f;
@@ -130,5 +128,9 @@ Common::Error DuneEngine::run() {
  
 	return Common::kNoError;
 }
- 
+
+bool DuneEngine::isCD() { 
+	return _gameDescription->flags & ADGF_CD;
+}
+
 } // End of namespace Dune

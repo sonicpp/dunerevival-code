@@ -27,7 +27,10 @@
 #define DUNE_H
  
 #include "common/random.h"
+
+#include "engines/advancedDetector.h"
 #include "engines/engine.h"
+
 #include "gui/debugger.h"
  
 namespace Dune {
@@ -42,22 +45,22 @@ enum {
 	// the current limitation is 32 debug levels (1 << 31 is the last one)
 };
  
-struct DuneGameDescription;
-
 class DuneEngine : public Engine {
 public:
-	DuneEngine(OSystem *syst, const DuneGameDescription *gameDesc);
+	DuneEngine(OSystem *syst, const ADGameDescription *gameDesc);
 	~DuneEngine();
  
 	virtual Common::Error run();
  	virtual bool hasFeature(EngineFeature f) const;
+
+	bool isCD();
 
 private:
 	DuneConsole *_console;
  
 	// We need random numbers
 	Common::RandomSource _rnd;
-	const DuneGameDescription *_gameDescription;
+	const ADGameDescription *_gameDescription;
 };
  
 
