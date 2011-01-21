@@ -98,7 +98,7 @@ FrameInfo Sprite::getFrameInfo(uint16 frameIndex) {
 	result.isCompressed = b2 & 0x80;
 	result.width = b1 | ((b2 & 0x7f) << 8);
 	result.height = _res->_stream->readByte();
-	result.palOffset = _res->_stream->readByte();
+	result.palOffset = _res->_stream->readSByte();
 
 	// width must be divisible by 4
 	while (result.width % 4 != 0)

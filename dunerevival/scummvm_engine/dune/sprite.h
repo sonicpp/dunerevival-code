@@ -35,7 +35,7 @@ struct FrameInfo {
 	bool isCompressed;
 	uint16 width;
 	uint16 height;
-	byte palOffset;
+	int8 palOffset;
 };
 
 class Sprite {
