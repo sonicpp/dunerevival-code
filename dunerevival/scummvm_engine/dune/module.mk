@@ -4,6 +4,7 @@ MODULE_OBJS := \
 	console.o \
 	detection.o \
 	dune.o \
+	font.o \
 	music.o \
 	resource.o \
 	sentences.o \
