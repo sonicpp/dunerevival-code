@@ -1,0 +1,95 @@
+Taken from: http://forum.dune2k.com/index.php?/topic/17217-rewriting-cryos-dune-1-it-seems-possible/page__st__120
+
+Incidentally, a key to the VOC folders follows, to save anyone else doing the same. I might transcribe some of the more significant files as well.
+
+PA Duke Leto Atreides
+PB Jessica
+PC Thufir
+PD Duncan
+PE Gurney
+PF Stilgar
+PG Kynes
+PH Chani
+PI Harah
+PJ Baron Harkonnen
+PK Feyd-Rautha Harkonnen
+PL Emperor Shaddam IV
+PM Harkonnen Captain
+PN Smuggler
+PO Fremen Leaders
+PZ Spice Opera music, Comms Room, Ornithopter locations 
+
+The sietch indices are as follows:
+
+2BE	Arrakeen Palace
+2BF	Arrakeen-Tabr
+2C0	Arrakeen-Timin
+2C1	Arrakeen-Tuek
+2C2	Arrakeen-Harg
+2C3	Arrakeen-Clam
+2C4	Arrakeen-Tsymyn
+2C5	Arrakeen-Siet
+2C6	Arrakeen-Pyons
+2CD	Carthag (Atreides)
+2CF	Carthag-Tabr
+2D0	Carthag-Timin
+2D1	Carthag-Tuek
+2D2	Carthag-Harg
+2D3	Carthag-Clam
+2DF	Tuono-Tabr
+2E0	Tuono-Timin
+2E1	Tuono-Tuek
+2E2	Tuono-Harg
+2E3	Tuono-Clam
+2E6	Tuono-Pyons
+2EF	Habbanya-Tabr
+2F0	Habbanya-Timin
+2F1	Habbanya-Tuek
+2F2	Habbanya-Harg (MISSING)
+2F3	Habbanya-Clam
+2FF	Oxtyn-Tabr
+300	Oxtyn-Timin
+301	Oxtyn-Tuek
+302	Oxtyn-Harg
+306	Oxtyn-Pyons
+30F	Tsympo-Tabr
+310	Tsympo-Timin
+311	Tsympo-Tuek
+312	Tsympo-Harg
+313	Tsympo-Clam
+314	Tsympo-Tsymyn
+315	Tsympo-Siet
+316	Tsympo-Pyons
+317	Tsympo-Pyort
+31F	Bledan-Tabr
+320	Bledan-Timin
+321	Bledan-Tuek
+322	Bledan-Harg
+32F	Ergsun-Tabr
+330	Ergsun-Timin
+331	Ergsun-Tuek
+332	Ergsun-Harg
+333	Ergsun-Clam
+334	Ergsun-Tsymyn
+33F	Haga-Tabr
+340	Haga-Timin
+341	Haga-Tuek
+342	Haga-Harg
+343	Haga-Clam
+344	Haga-Tsymyn
+345	Haga-Siet
+346	Haga-Pyons
+34F	Cielago-Tabr
+350	Cielago-Timin
+35F	Sihaya-Tabr
+360	Sihaya-Timin
+361	Sihaya-Tuek
+362	Sihaya-Harg
+363	Sihaya-Clam
+366	Sihaya-Pyons
+36F	Celimyn-Tabr
+370	Celimyn-Timin
+371	Celimyn-Tuek
+372	Celimyn-Harg
+
+Oxtyn-Harg is 302, so, for the ornithopter voice saying "Oxtyn-Harg", look for PZ302I.VOC, while for Fremen saying "Here in Oxtyn-Harg", PO302I.VOC is the 'inside' version, PO302O.VOC is the 'outside' (i.e. vision) version.
