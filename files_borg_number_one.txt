@@ -1,0 +1,52 @@
+Taken from http://forum.dune2k.com/index.php?/topic/17217-rewriting-cryos-dune-1-it-seems-possible/page__st__60
+
+Now, it is time to figure the meaning of the different files
+(and their file specifications).
+All file names will be described in their original compressed state and original filename extension.
+(Compressed HSQ/M32/AGD files can be unpacked with UNHSQ . )
+
+Sounds:
+SD1.HSQ -
+SD2.HSQ - the turn over the page(s) sound from the Dune in-game book
+SD3.HSQ - war sounds
+SD4.HSQ - the water of life drop sound in the cave(s) where you can drink the water of life
+SD5.HSQ -
+SD6.HSQ -
+SD7.HSQ -
+SD8.HSQ -
+SD9.HSQ -
+SDA.HSQ - a nice low frequency sound from ... ???
+SDB.HSQ - Paul - Usul Muadib- Atreides: "Father! The sleeper has awakened!" ( http://www.the-ocean...unds/awaken.wav )
+
+The sound files in DUNE are stored in the "Creative Voice File" format.
+The sounds will only be played if you chose: "Sound Blaster (music + sounds)" in the DUNE installation program before.
+
+Music:
+
+ARRAKIS.HSQ - default/standard background music in many Dune scenes
+BAGDAD.HSQ
+KURSK.HSQ
+MORNING.HSQ
+SEKENCE.HSQ
+SIETCHM.HSQ
+WARSONG.HSQ - TAKE AN ORNITHOPTER
+WATER.HSQ - Scene: The Water of life cave inside a Sietch
+WORMSUIT.HSQ - DUNE intro (with text/introduction/history)
+WORMINTR.HSQ - DUNE intro (without text/introduction/history)
+
+The mentioned HSQ files will be played if you chosed: "Adlib music card" or "Sound Blaster (music + sounds)" in in DUNE's Installation (hardware configuration/GAME CONFIGURATION).
+After this, the dune.bat file calls/starts the DUNE ("DUNEPRG.exe") executable with on of the following switches:
++ ADL
++ SDB2207
+(depending on the music/sound device which was set before.)
+
+
+*.AGD - DUNE music with Adlib Gold instrumentation and for Adlib Gold compatible devices
+If you chose "Adlib Gold music card" in DUNE's Installation(hardware configuration/GAME CONFIGURATION), then the dune.bat file starts the DUNE executable with the parameter "AGD388".
+Then DUNE loads "DUNEAGD.hsq" at the beginning and before playing any kind of music.
+The unpacked "DUNEAGD.hsq" seems to be a kind of DUNE music format file reader and player for the *.AGD files.
+
+*.M32 - DUNE music with MT-32 instrumentation and for MT-32/LAPC1 compatible devices
+If you chose "Roland MT-32 (LAPC1 midi card)" in DUNE's Installation(hardware configuration/GAME CONFIGURATION), then the dune.bat file starts the DUNE executable with the parameter "MID330".
+Then DUNE loads "DUNEMID.HSQ" at the beginning and before playing any kind of music.
+The unpacked "DUNEAGD.HSQ" seems to be a kind of DUNE music format file reader and player for the *.M32 files.
