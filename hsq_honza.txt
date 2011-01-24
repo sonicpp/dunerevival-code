@@ -1,0 +1,14 @@
+Taken from http://forum.dune2k.com/index.php?/topic/17217-rewriting-cryos-dune-1-it-seems-possible/page__st__260
+
+I think I solved mysteries around hsq. I discovered more info about compression on wiki
+http://en.wikipedia.org/wiki/LZ77
+Our hsq is a kind of old well publishded Lampel Ziv algorithm. Methods like this are known as a dictionary coders.
+I found same algos in unlzexe for dos, I have to suspect it would be lampel ziv, to save work with compressor/encoder.
+Advanced encoders use KMP algorithm for pattern matching to work faster. I think, LZ77 encoding was very polular at end of past century.
+Hsq compressor already posted is using simple intuitive match-comparison method, which is slower than KMP.
+
+I hope I get some free time during christmass holiday. I would like to continue rewriting disassembled duneprg to C.
+
+Do you know that zip is improvement of this algorithm? (zip stores dictionary in huffman tree)
+Do you know that excelent lzma (7 zip) from Igor Pavlov is latest improvement of this type of compression?
+From time to time some body learned about this algo and wrote new one improved (most of them was/are popular and famous) 
