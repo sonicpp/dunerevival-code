@@ -23,10 +23,10 @@
  *
  */
 
-#ifndef DUNE_SENTENCES_H
-#define DUNE_SENTENCES_H
+#ifndef CRYO_SENTENCES_H
+#define CRYO_SENTENCES_H
 
-namespace Dune {
+namespace Cryo {
 
 class Sentences {
 public:
@@ -41,6 +41,6 @@ private:
 	uint16 _sentenceCount;
 };
 
-} // End of namespace Dune
+} // End of namespace Cryo
  
 #endif

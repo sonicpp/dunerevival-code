@@ -19,16 +19,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * $URL: 
- * $Id: resource.cpp
+ * $Id: sentences.cpp
  *
  */
 
 #include "common/memstream.h"
 
-#include "dune/resource.h"
-#include "dune/sentences.h"
+#include "cryo/resource.h"
+#include "cryo/sentences.h"
 
-namespace Dune {
+namespace Cryo {
 
 Sentences::Sentences(Common::String filename) {
 	_res = new Resource(filename);
@@ -65,4 +65,4 @@ Common::String Sentences::getSentence(uint16 index, bool printableOnly) {
 	return sentence;
 }
 
-} // End of namespace Dune
+} // End of namespace Cryo

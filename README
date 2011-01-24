@@ -1,11 +1,11 @@
-This is a ScummVM engine for Dune.
+This is a ScummVM engine for Cryo games, starting with Dune 1.
 
 To compile it, you need to perform the following:
 1) Get the latest ScummVM source from its trunk, i.e.
 https://scummvm.svn.sourceforge.net/svnroot/scummvm/scummvm/trunk
-2) Apply the scummvm_add_dune.patch
-3) Copy the dune folder inside the /trunk/engines folder
-4) Compile ScummVM, which will include the dune engine!
+2) Apply the scummvm_add_cryo.patch
+3) Copy the cryo folder inside the /trunk/engines folder
+4) Compile ScummVM, which will include the cryo engine!
 
 Compilation instructions for ScummVM can be found in its relevant wiki section:
 http://wiki.scummvm.org/index.php/Compiling_ScummVM

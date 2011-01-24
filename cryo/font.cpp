@@ -28,11 +28,11 @@
 
 #include "graphics/surface.h"
 
-#include "dune/resource.h"
-#include "dune/sprite.h"
-#include "dune/font.h"
+#include "cryo/resource.h"
+#include "cryo/sprite.h"
+#include "cryo/font.h"
 
-namespace Dune {
+namespace Cryo {
 
 #define FIXED_FONT_HEIGHT 9
 // DOS 437 characters start from ASCII 48 ('0')
@@ -108,4 +108,4 @@ void SpriteFont::drawText(Common::String text, uint16 x, uint16 y) {
 	}
 }
 
-} // End of namespace Dune
+} // End of namespace Cryo

@@ -23,19 +23,19 @@
  *
  */
 
-#ifndef DUNE_CONSOLE_H
-#define DUNE_CONSOLE_H
+#ifndef CRYO_CONSOLE_H
+#define CRYO_CONSOLE_H
 
 #include "gui/debugger.h"
 
-namespace Dune {
+namespace Cryo {
 
-class DuneEngine;
+class CryoEngine;
 
-class DuneConsole : public GUI::Debugger {
+class CryoConsole : public GUI::Debugger {
 public:
-	DuneConsole(DuneEngine *vm);
-	virtual ~DuneConsole(void);
+	CryoConsole(CryoEngine *vm);
+	virtual ~CryoConsole(void);
 
 private:
 	bool cmdDump(int argc, const char **argv);
@@ -43,9 +43,9 @@ private:
 	bool cmdSprite(int argc, const char **argv);
 	bool cmdSound(int argc, const char **argv);
 
-	DuneEngine *_engine;
+	CryoEngine *_engine;
 };
  
-} // End of namespace Dune
+} // End of namespace Cryo
  
 #endif

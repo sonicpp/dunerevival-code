@@ -25,10 +25,9 @@
 
 // MIDI and digital music class
 
-#include "dune/dune.h"
-
-#include "dune/resource.h"
-#include "dune/music.h"
+#include "cryo/cryo.h"
+#include "cryo/resource.h"
+#include "cryo/music.h"
 
 #include "sound/audiostream.h"
 #include "sound/mididrv.h"
@@ -38,7 +37,7 @@
 #include "common/file.h"
 #include "common/substream.h"
 
-namespace Dune {
+namespace Cryo {
 
 #define BUFFER_SIZE 4096
 #define MUSIC_SUNSPOT 26
@@ -247,5 +246,5 @@ void Music::stop() {
 	_data = 0;
 }
 
-} // End of namespace Saga
+} // End of namespace Cryo
 

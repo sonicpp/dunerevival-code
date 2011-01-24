@@ -23,13 +23,13 @@
  *
  */
 
-#ifndef DUNE_RESOURCE_H
-#define DUNE_RESOURCE_H
+#ifndef CRYO_RESOURCE_H
+#define CRYO_RESOURCE_H
 
 #include "common/memstream.h"
-#include "dune/dune.h"
+#include "cryo/cryo.h"
 
-namespace Dune {
+namespace Cryo {
 
 class Resource {
 public:
@@ -47,6 +47,6 @@ private:
 	byte *_data;
 };
 
-} // End of namespace Dune
+} // End of namespace Cryo
  
 #endif

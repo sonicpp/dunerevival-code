@@ -32,27 +32,27 @@
 #include "sound/decoders/raw.h"
 #include "sound/mixer.h"
 
-#include "dune/console.h"
-#include "dune/dune.h"
-#include "dune/resource.h"
-#include "dune/sentences.h"
-#include "dune/sprite.h"
+#include "cryo/console.h"
+#include "cryo/cryo.h"
+#include "cryo/resource.h"
+#include "cryo/sentences.h"
+#include "cryo/sprite.h"
 
-namespace Dune {
+namespace Cryo {
 
-DuneConsole::DuneConsole(DuneEngine *engine) : GUI::Debugger(),
+CryoConsole::CryoConsole(CryoEngine *engine) : GUI::Debugger(),
 	_engine(engine) {
 
-	DCmd_Register("dump",				WRAP_METHOD(DuneConsole, cmdDump));
-	DCmd_Register("sentences",			WRAP_METHOD(DuneConsole, cmdSentences));
-	DCmd_Register("sound",				WRAP_METHOD(DuneConsole, cmdSound));
-	DCmd_Register("sprite",				WRAP_METHOD(DuneConsole, cmdSprite));
+	DCmd_Register("dump",				WRAP_METHOD(CryoConsole, cmdDump));
+	DCmd_Register("sentences",			WRAP_METHOD(CryoConsole, cmdSentences));
+	DCmd_Register("sound",				WRAP_METHOD(CryoConsole, cmdSound));
+	DCmd_Register("sprite",				WRAP_METHOD(CryoConsole, cmdSprite));
 }
 
-DuneConsole::~DuneConsole() {
+CryoConsole::~CryoConsole() {
 }
 
-bool DuneConsole::cmdDump(int argc, const char **argv) {
+bool CryoConsole::cmdDump(int argc, const char **argv) {
 	if (argc < 2) {
 		DebugPrintf("Decompresses the given HSQ file into a raw uncompressed file\n");
 		DebugPrintf("  Usage: %s <file name>\n\n", argv[0]);
@@ -73,7 +73,7 @@ bool DuneConsole::cmdDump(int argc, const char **argv) {
 	return true;
 }
 
-bool DuneConsole::cmdSentences(int argc, const char **argv) {
+bool CryoConsole::cmdSentences(int argc, const char **argv) {
 	if (argc < 2) {
 		DebugPrintf("Shows information about a sentence file, or prints a specific sentence from a file\n");
 		DebugPrintf("  Usage: %s <file name> <sentence number>\n\n", argv[0]);
@@ -100,7 +100,7 @@ bool DuneConsole::cmdSentences(int argc, const char **argv) {
 	return true;
 }
 
-bool DuneConsole::cmdSound(int argc, const char **argv) {
+bool CryoConsole::cmdSound(int argc, const char **argv) {
 	if (argc < 2) {
 		DebugPrintf("Plays a sound file (sd*.hsq). Valid sounds are 1-11\n");
 		return true;
@@ -129,7 +129,7 @@ bool DuneConsole::cmdSound(int argc, const char **argv) {
 	return true;
 }
 
-bool DuneConsole::cmdSprite(int argc, const char **argv) {
+bool CryoConsole::cmdSprite(int argc, const char **argv) {
 	if (argc < 2) {
 		DebugPrintf("Shows information about a game sprite (character/background) file\n");
 		DebugPrintf("  Usage: %s <file name> <frame number> <x> <y>\n\n", argv[0]);
@@ -176,4 +176,4 @@ bool DuneConsole::cmdSprite(int argc, const char **argv) {
 	return showConsole;
 }
 
-} // End of namespace Dune
+} // End of namespace Cryo

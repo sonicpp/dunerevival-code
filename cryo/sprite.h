@@ -19,16 +19,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * $URL: 
- * $Id: sentences.h
+ * $Id: sprite.h
  *
  */
 
-#ifndef DUNE_SPRITE_H
-#define DUNE_SPRITE_H
+#ifndef CRYO_SPRITE_H
+#define CRYO_SPRITE_H
 
-#include "dune/dune.h"
+#include "cryo/cryo.h"
 
-namespace Dune {
+namespace Cryo {
 
 struct FrameInfo {
 	uint16 offset;
@@ -55,6 +55,6 @@ private:
 	OSystem *_system;
 };
 
-} // End of namespace Dune
+} // End of namespace Cryo
  
 #endif

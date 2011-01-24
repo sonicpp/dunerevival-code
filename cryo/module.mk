@@ -1,9 +1,9 @@
-MODULE := engines/dune
+MODULE := engines/cryo
  
 MODULE_OBJS := \
 	console.o \
 	detection.o \
-	dune.o \
+	cryo.o \
 	font.o \
 	music.o \
 	resource.o \
@@ -11,10 +11,10 @@ MODULE_OBJS := \
 	sprite.o
 	
 MODULE_DIRS += \
-	engines/dune
+	engines/cryo
  
 # This module can be built as a plugin
-ifeq ($(ENABLE_DUNE), DYNAMIC_PLUGIN)
+ifeq ($(ENABLE_CRYO), DYNAMIC_PLUGIN)
 PLUGIN := 1
 endif
  

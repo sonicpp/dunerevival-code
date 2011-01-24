@@ -26,10 +26,10 @@
 #include "common/memstream.h"
 #include "common/system.h"
 
-#include "dune/resource.h"
-#include "dune/sprite.h"
+#include "cryo/resource.h"
+#include "cryo/sprite.h"
 
-namespace Dune {
+namespace Cryo {
 
 Sprite::Sprite(Common::String filename, OSystem *system) : _system(system) {
 	_res = new Resource(filename);
@@ -159,4 +159,4 @@ void Sprite::drawFrame(uint16 frameIndex, uint16 x, uint16 y) {
 	delete[] rect;
 }
 
-} // End of namespace Dune
+} // End of namespace Cryo

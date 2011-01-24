@@ -23,10 +23,10 @@
  *
  */
 
-#ifndef DUNE_FONT_H
-#define DUNE_FONT_H
+#ifndef CRYO_FONT_H
+#define CRYO_FONT_H
 
-namespace Dune {
+namespace Cryo {
 
 class Resource;
 class Sprite;
@@ -57,6 +57,6 @@ private:
 	Sprite *_spr;
 };
 
-} // End of namespace Dune
+} // End of namespace Cryo
  
 #endif

@@ -19,7 +19,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * $URL: 
- * $Id: dune.cpp
+ * $Id: cryo.cpp
  *
  */
 
@@ -34,16 +34,16 @@
  
 #include "engines/util.h"
 
-#include "dune/console.h"
-#include "dune/dune.h"
-#include "dune/font.h"
-#include "dune/resource.h"
-#include "dune/sentences.h"
-#include "dune/sprite.h"
+#include "cryo/console.h"
+#include "cryo/cryo.h"
+#include "cryo/font.h"
+#include "cryo/resource.h"
+#include "cryo/sentences.h"
+#include "cryo/sprite.h"
 
-namespace Dune {
+namespace Cryo {
  
-DuneEngine::DuneEngine(OSystem *syst, const ADGameDescription *gameDesc)
+CryoEngine::CryoEngine(OSystem *syst, const ADGameDescription *gameDesc)
 	: Engine(syst), _gameDescription(gameDesc) {
 	// Put your engine in a sane state, but do nothing big yet;
 	// in particular, do not load data from files; rather, if you
@@ -60,28 +60,28 @@ DuneEngine::DuneEngine(OSystem *syst, const ADGameDescription *gameDesc)
 	//DebugMan.addDebugChannel(kQuuxDebugExample2, "example2", "also an example");
  
 	// Don't forget to register your random source
-	g_eventRec.registerRandomSource(_rnd, "dune");
+	g_eventRec.registerRandomSource(_rnd, "cryo");
  
-	//debug("DuneEngine::DuneEngine");
+	//debug("CryoEngine::CryoEngine");
 }
  
-DuneEngine::~DuneEngine() {
+CryoEngine::~CryoEngine() {
 	// Dispose your resources here
-	//debug("DuneEngine::~DuneEngine");
+	//debug("CryoEngine::~CryoEngine");
  
 	// Remove all of our debug levels here
 	DebugMan.clearAllDebugChannels();
 }
  
-Common::Error DuneEngine::run() {
+Common::Error CryoEngine::run() {
 	// Initialize graphics using following:
 	initGraphics(320, 200, false);
  
 	// Create debugger console. It requires GFX to be initialized
-	_console = new DuneConsole(this);
+	_console = new CryoConsole(this);
  
 	// Additional setup.
-	//debug("DuneEngine::init\n");
+	//debug("CryoEngine::init\n");
  
 	Common::Event event;
 	Common::EventManager *eventMan = _system->getEventManager();
@@ -105,7 +105,7 @@ Common::Error DuneEngine::run() {
 	_system->updateScreen();
 
 	// Your main even loop should be (invoked from) here.
-	//debug("DuneEngine::go: Hello, World!\n");
+	//debug("CryoEngine::go: Hello, World!\n");
  	while (!shouldQuit()) {
 		// Open the debugger window, if requested
 		while (eventMan->pollEvent(event)) {
@@ -129,8 +129,8 @@ Common::Error DuneEngine::run() {
 	return Common::kNoError;
 }
 
-bool DuneEngine::isCD() { 
+bool CryoEngine::isCD() { 
 	return _gameDescription->flags & ADGF_CD;
 }
 
-} // End of namespace Dune
+} // End of namespace Cryo

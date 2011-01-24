@@ -32,15 +32,15 @@
 
 #include "base/plugins.h"
 
-#include "dune/dune.h"
+#include "cryo/cryo.h"
 
-static const PlainGameDescriptor duneGames[] = {
+static const PlainGameDescriptor cryoGames[] = {
 	{ "dune", "Dune" },
 	{ 0, 0 }
 };
 
 
-namespace Dune {
+namespace Cryo {
 
 static const ADGameDescription gameDescriptions[] = {
 	// English floppy version
@@ -74,21 +74,21 @@ static const ADGameDescription gameDescriptions[] = {
 	AD_TABLE_END_MARKER
 };
 
-} // End of namespace Dune
+} // End of namespace Cryo
 
 static const ADParams detectionParams = {
 	// Pointer to ADGameDescription or its superset structure
-	(const byte *)Dune::gameDescriptions,
+	(const byte *)Cryo::gameDescriptions,
 	// Size of that superset structure
 	sizeof(ADGameDescription),
 	// Number of bytes to compute MD5 sum for
 	5000,
 	// List of all engine targets
-	duneGames,
+	cryoGames,
 	// Structure for autoupgrading obsolete targets
 	0,
 	// Name of single gameid (optional)
-	"dune",
+	"cryo",
 	// List of files for file-based fallback detection (optional)
 	0,
 	// Flags
@@ -101,41 +101,41 @@ static const ADParams detectionParams = {
 	0
 };
 
-class DuneMetaEngine : public AdvancedMetaEngine {
+class CryoMetaEngine : public AdvancedMetaEngine {
 public:
-	DuneMetaEngine() : AdvancedMetaEngine(detectionParams) {}
+	CryoMetaEngine() : AdvancedMetaEngine(detectionParams) {}
 
 	virtual const char *getName() const {
-		return "Dune Engine";
+		return "Cryo Engine";
 	}
 
 	virtual const char *getOriginalCopyright() const {
-		return "Dune Engine (C) Cryo Interactive Entertainment";
+		return "Cryo Engine (C) Cryo Interactive Entertainment";
 	}
 
 	virtual bool hasFeature(MetaEngineFeature f) const;
 	virtual bool createInstance(OSystem *syst, Engine **engine, const ADGameDescription *desc) const;
 };
 
-bool DuneMetaEngine::hasFeature(MetaEngineFeature f) const {
+bool CryoMetaEngine::hasFeature(MetaEngineFeature f) const {
 	return
 		false;
 }
 
-bool Dune::DuneEngine::hasFeature(EngineFeature f) const {
+bool Cryo::CryoEngine::hasFeature(EngineFeature f) const {
 	return
 		(f == kSupportsRTL);
 }
 
-bool DuneMetaEngine::createInstance(OSystem *syst, Engine **engine, const ADGameDescription *desc) const {
+bool CryoMetaEngine::createInstance(OSystem *syst, Engine **engine, const ADGameDescription *desc) const {
 	if (desc) {
-		*engine = new Dune::DuneEngine(syst, desc);
+		*engine = new Cryo::CryoEngine(syst, desc);
 	}
 	return desc != 0;
 }
 
-#if PLUGIN_ENABLED_DYNAMIC(DUNE)
-	REGISTER_PLUGIN_DYNAMIC(DUNE, PLUGIN_TYPE_ENGINE, DuneMetaEngine);
+#if PLUGIN_ENABLED_DYNAMIC(CRYO)
+	REGISTER_PLUGIN_DYNAMIC(CRYO, PLUGIN_TYPE_ENGINE, CryoMetaEngine);
 #else
-	REGISTER_PLUGIN_STATIC(DUNE, PLUGIN_TYPE_ENGINE, DuneMetaEngine);
+	REGISTER_PLUGIN_STATIC(CRYO, PLUGIN_TYPE_ENGINE, CryoMetaEngine);
 #endif

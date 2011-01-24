@@ -19,12 +19,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * $URL: 
- * $Id: dune.h
+ * $Id: cryo.h
  *
  */
 
-#ifndef DUNE_H
-#define DUNE_H
+#ifndef CRYO_H
+#define CRYO_H
  
 #include "common/random.h"
 
@@ -33,9 +33,9 @@
 
 #include "gui/debugger.h"
  
-namespace Dune {
+namespace Cryo {
  
-class DuneConsole;
+class CryoConsole;
  
 // our engine debug levels
 enum {
@@ -45,10 +45,10 @@ enum {
 	// the current limitation is 32 debug levels (1 << 31 is the last one)
 };
  
-class DuneEngine : public Engine {
+class CryoEngine : public Engine {
 public:
-	DuneEngine(OSystem *syst, const ADGameDescription *gameDesc);
-	~DuneEngine();
+	CryoEngine(OSystem *syst, const ADGameDescription *gameDesc);
+	~CryoEngine();
  
 	virtual Common::Error run();
  	virtual bool hasFeature(EngineFeature f) const;
@@ -56,7 +56,7 @@ public:
 	bool isCD();
 
 private:
-	DuneConsole *_console;
+	CryoConsole *_console;
  
 	// We need random numbers
 	Common::RandomSource _rnd;
@@ -64,6 +64,6 @@ private:
 };
  
 
-} // End of namespace Dune
+} // End of namespace Cryo
  
 #endif

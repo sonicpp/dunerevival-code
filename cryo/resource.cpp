@@ -25,9 +25,9 @@
 
 #include "common/file.h"
 
-#include "dune/resource.h"
+#include "cryo/resource.h"
 
-namespace Dune {
+namespace Cryo {
 
 #define HSQ_PACKED_CHECKSUM 171
 
@@ -194,8 +194,8 @@ void Resource::dump(Common::String outFilename) {
 		f.flush();
 		f.close();
 	} else {
-		error("Error opening %s for output", outFilename.c_str());
+		warning("Error opening %s for output", outFilename.c_str());
 	}
 }
 
-} // End of namespace Dune
+} // End of namespace Cryo

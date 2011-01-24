@@ -25,8 +25,8 @@
 
 // Music class
 
-#ifndef DUNE_MUSIC_H
-#define DUNE_MUSIC_H
+#ifndef CRYO_MUSIC_H
+#define CRYO_MUSIC_H
 
 #include "sound/mididrv.h"
 #include "sound/midiparser.h"
@@ -35,7 +35,7 @@
 #include "common/array.h"
 #include "common/mutex.h"
 
-namespace Dune {
+namespace Cryo {
 
 enum MusicFlags {
 	MUSIC_NORMAL = 0,
