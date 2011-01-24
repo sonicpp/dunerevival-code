@@ -1,0 +1,8 @@
+HNM/HSQ file format
+http://wiki.multimedia.cx/index.php?title=HNM_(1)#Video_Block_171
+
+Original thread:
+http://forum.dune2k.com/index.php?/topic/17217-rewriting-cryos-dune-1-it-seems-possible/
+
+Data files description
+http://bigs.fr/dune_old/
