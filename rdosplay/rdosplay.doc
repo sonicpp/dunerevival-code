@@ -1,0 +1,355 @@
+   ÂÂÄÄ¿ ÂÂÄÄ¿ ÚÂÄÄ¿ ÚÂÄÄ¿ ÂÂÄÄ¿ Ú¿    ÚÂÄÄ¿ Ú¿  Â     ÚÂÄÄ¿     Ú¿  ÚÂÄÄ¿
+   ³³  ³ ³³  ³ ³³  ³ ³³    ³³  ³ ³³    ³³  ³ ³³  ³     ³³  ³    Ä´³  ³³  ³
+   ³ÃÄÂÙ ³³  ³ ³³  ³ ÀÁÄÂ¿ ³ÃÄÄÙ ³³    ³ÃÄÄ´ ³ÃÄÄÙ     ³³  ³     ³³  ³ÃÄÄ´
+   ³³ À¿ ³³  ³ ³³  ³    ³³ ³³    ³³    ³³  ³ ³³        ³³  ³ Ú¿  ³³  ³³  ³
+   ÀÙ  À ÁÁÄÄÙ ÀÁÄÄÙ ÀÄÄÁÙ ÀÙ    ÀÁÄÄÙ ÀÙ  Á ÀÙ        ÀÁÄÄÙ ÀÙ ÄÁÁÄ ÀÁÄÄÙ
+    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                  Written by Roman Dolejsi (RDOS of DIMENSION)
+
+                                August 27, 1996
+                 Last update: September 5, 1996
+
+
+       This is the documentation belonging to and explaining the use of
+
+                             RDOSPLAY version 0.17e
+                   OPL2/OPL3 music module player for MS-DOS
+
+
+   TOPICS covered in this document:
+
+	 DISCLAIMER
+         APOLOGIZE
+	 PURPOSE OF RDOSPLAY
+	 REQUIREMENTS
+         INSTALLATION OF RDOSPLAY
+         RDOSPLAY IN ACTION
+         PROGRAM KEYS AND DIALOG LINE
+         CURRENTLY SUPPORTED MODULE FORMATS
+         MODULE GRABBING
+         FREQUENTLY ASKED QUESTIONS
+         COPYRIGHT
+         WHERE TO FIND RDOSPLAY
+         THANX
+         CONTACTING ME
+
+
+
+DISCLAIMER:
+-----------
+  Although RDOSPLAY has been tested on several systems, I cannot guarantee that
+it is bugless. Therefore I do not  take  responsibility for any damage directly
+or indirectly caused by RDOSPLAY as a result of known/unknown  errors in it  or
+errors caused by its access to your devices.
+
+
+APOLOGIZE:
+----------
+  Sorry, english is not my  native language. However, I wrote this nice docy in
+english without any help. I APOLOGIZE for any mistakes in the document. Take it
+easy... Nobody is perfect.. :-)
+
+
+PURPOSE OF RDOSPLAY:
+--------------------
+  RdosPlay is a OPL2/OPL3 music module player for IBM PC  compatible  computers
+running MS-DOS operating system. This  means  that  you  can use it for playing
+your  favorite  melody  from some music editor, demo or game. It is FIRST known
+generic OPL player. I've coded it because of lack of any player of this type in
+PC-world.
+
+
+REQUIREMENTS:
+-------------
+  RdosPlay is coded in  pure 286-assembler  with  no 386+ optimalizations. This
+means  you  can  use  your  old 286 and Adlib card for background playing while
+doing some work. So The only required things  it needs  is  OPL2/3/4 compatible
+card (Adlib or higher), 286 or higher and about 192kB of free mem. For  graphic
+analyzers you would probably need at least 386-sx (not tested). The other thing
+you need is some music module of course :-)
+
+
+INSTALLATION OF RDOSPLAY:
+-------------------------
+
+- first  you have to make some directory on your drive. Then you have to unpack
+  there archive file RPLYxyyz.ZIP. Don't forget  to  unpack it WITH directories
+  otherwise you would get a pretty nice garbage :-)
+  (you probably did all this when you read these lines :-)
+
+- RDOSPLAY pack should consist of these files:
+
+    RDOSPLAY.EXE - Main file - OPL player
+    RDOSPLAY.DOC - Documentation for RdosPlay (this file)
+    RDOSPLAY.REV - RDOSPLAY changes/revision history file
+    FILE_ID.DIZ  - bbs file_id header
+    FILES\*      - music module examples
+
+- now you have RdosPlay successfully installed :-)
+
+
+RDOSPLAY IN ACTION:
+-------------------
+  Rdosplay  uses  your  sound  card's  OPL chip  for  producing synthetic music
+typical  for  these  chips. For  OPL2 (mono) musics it can also simulate stereo
+by  distributing  channels  in left/right speakers. It's not possible with OPL3
+musics  which  do  their  own (precise) panning. OPL2 stereo and OPL3 modes are
+both possible only on OPL3 chip of course.
+  When  producing  music  RdosPlay  also  shows  some  analyzers  to make world
+brighter :-). This  can  be  supressed  when  using slow computers or slow OPL2
+emulation (GUS users).
+
+
+PROGRAM KEYS AND DIALOG LINE:
+-----------------------------
+While RdosPlay is running, you can use these keys:
+  PgUp - increase track of music (for ADL only)
+  PgDn - decrease track of music (for ADL only)
+
+Dialog line looks as following:
+  RDOSPLAY.EXE [/p] [/t] [/l] [/s] <musfile.ext>
+
+  options:
+    /pXXX:Y - specifies port and type of OPL chip (avoiding autodetection)
+              XXX: hexadecimal base port of the chip
+                Y: 1 = OPL2 (Adlib compatible)
+                   2 = OPL3 (Yamaha YM262 stereo chip)
+                   3 = OPL4 (Yamaha OPL4 stereo chip)
+    /tXXX   - specifies track to be played (for ADL format only, 1-118)
+    /s      - enables OPL3-stereo for OPL2 musics (omitted with OPL3 musics)
+    /lX     - enables LED-meter on LPT port
+              X: port number, where:
+                 0 = 3BC (EGA's LPT port)
+                 1 = 378 (standard LPT1 port)
+                 2 = 278 (standard LPT2 port)
+
+
+CURRENTLY SUPPORTED MODULE FORMATS:
+-----------------------------------
+  RdosPlay  now  supports these formats (where are they and how to get them you
+can read in another section):
+
+  ú ADL (Adlib format similar to XMI)
+  ú AGD (Herad system - DUNE game)              [OPL3]
+  ú AMD (Amusic tracker packed files)
+  ú CAL (ShadowLands game)
+  ú D00 (JCH / Vibrants ver 1, 2 & 4)
+  ú FXM (Fuxoft AY music chip language)
+  ú HSC (HSC music composer)
+  ú LDS (Loudness system - Zeppelin game)
+  ú LEM (SI system - XMasLemmings game)
+  ú MUS (First Samurai game)
+  ú PLX (Palladix system - Logical game)
+  ú RAD (Reality ADlib tracker)
+  ú RAW (raw adlib data - Starport demo)
+  ú SAT (SAdT music composer)
+  ú SDB (Herad system - DUNE / KGB games)
+  ú SIG (SI system 2 - DIZZY games)
+  ú VIB (JO/Vibrants player)
+
+RdosPlay also supports some internal file packers. They are:
+  ú HSQ (mainly with SDB,AGD - Dune game)
+  ú SQX (mainly with SDB - KGB game)
+  ú ICE (mainly with CAL - ShadowLands game)
+
+
+MODULE GRABBING:
+----------------
+
+ú ADL
+
+   This is  format  used  in  many games. Each  file  can  consist of up to 118
+"tracks"  and  every  track  can  contain  separate  music. Default  track  for
+RdosPlay is track number 1. Track can be  selected  with parameter /t. RdosPlay
+will pack all used tracks so unused tracks won't be in selection field.
+
+
+ú AMD
+
+   This  extension  covers  files from Amusic tracker by Elyssis. There are two
+types  of them. Packed and non-packed. RdosPlay currently supports packed files
+only.
+
+
+ú CAL
+
+   This  standard  is  used  in  ShadowLands  game.  Look  there  and find file
+TUNE.CAL. It's ICE-packed file and RdosPlay has internal ICE-unpacker.
+
+
+ú D00
+
+   These  files  are  for  JCH / Vibrants player. They are created in Vibrant's
+editor  named  EdLib by packing standard *.EDL editor's files. Look for them in
+intros or in that editor. Files for player ver 2+ begin with 'JCH' sign.
+   Example: intro KUKKO2.EXE, offset B2A (module named CROONER.D00).
+
+
+ú FXM
+
+   These  files  are  special blocks of music code used in Fuxoft SoundTrack on
+ZX Spectrum computer. This  computer  has  3-channel sound chip named AY3-8910.
+RdosPlay  has  FXM interpreter and AY->OPL2 convertor. All the files that exist
+in this format are supplied with RdosPlay standard distribution.
+
+
+ú HSC
+
+   HSC files are commonly used in short demos and intros. The source from where
+they  came  is  mainly  HSC composer  which  is  available  on  anonymous FTP's
+on I-net. There  you  can  get  most of these files (about 100 modules). If you
+grab some file its extension must be HSC otherwise RdosPlay won't recognize it!
+
+
+ú LDS
+
+   These files are used in LOUDNESS system. Look  in  ZEPPELIN game's SOUND
+directory and take all *.DAT files.
+
+
+ú LEM
+
+   These  files  are  used  in X-Mas Lemmings game. Grab  them  yourself. Their
+sign is [0]=1C 52.
+
+
+ú MUS
+
+   This standard is used in FIRST SAMURAI game. Take file ADLIB.MUS.
+
+
+ú PLX
+
+   This standard is used in LOGICAL game. All  music  files  are stored in file
+LOGICAL.EXE. You have  to  grab  them  from this file. Here are file positions:
+13310, 165C0, 1B160, 1F320, 50360, 50550, 50730, 50990, 50B90, 50D10, 50FA0,
+510F0, 51310, 56620, 59F90.
+
+
+ú RAD
+
+   This format came with Reality ADlib Tracker. Tunes often have  RAD extension
+and if not, there is a 'RAD' sign at the beginning of the file.
+
+
+ú RAW
+
+   This format is very simple. It  consists  of  commands  directly sent to OPL
+port. RAW format is used in STARPRT2.EXE intro (for example).
+   format:   [0]=db     'RAWADATA'                 ... file identifier
+             [8]=dw     clock                      ... clock (int8) speed
+            [10]=dw     data_size dup (data)       ... adlib data
+            [..]=dw     0ffffh                     ... end of file
+   data: parameter, command.   command==0: data==n ... wait n times.
+                               command==2: data==0 ... set speed (next word)
+                               command==2: data==1 ... set OPL3 port A default
+                               command==2: data==2 ... set OPL3 port B default
+
+   This format is also generated by RAC (Rdos Adlib Catcher).
+
+
+ú SAT
+
+   These  files are made in SAdT music composer. They begin with 'SAdT' sign.
+
+
+ú SDB, AGD
+
+   These files are used in DUNE game. Look  in  game's directory and search for
+*.SDB  or  *.AGD  files.  These  are  HSQ-packed.  You  can  unpack  them  with
+UNHSQ (RDOS production)  or  use  them  as  they are. RdosPlay has internal HSQ
+unpacker and recognizes both packed or unpacked modules. *.AGD files have to be
+played on OPL-3  stereo  music  chip (that's why /s parameter doesn't work with
+them), *.SDB are for standard AdLib (OPL-2) card.
+
+
+ú SIG
+
+   These  files  are used in DIZZY games. They are stored in main .EXE file and
+you have to grab them. Here are  their respective filenames, offsets and sizes:
+  FFOOD=6464E,3B38  KWIKSNAX=73C2E,2BC4  MAGICLND=689EE,4508  YOLK=6571E,33FD
+
+
+ú VIB
+
+   This is standard used in player by JO / Vibrants.
+   Example: intro COPPER.EXE, offset 8990.
+
+
+RDOSPLAY FREQUENTLY ASKED QUESTIONS:
+------------------------------------
+
+* RdosPlay have not detected my soundcard although I have OPL2 compatible card.
+- You have to set sound card manually (ie. /p parameter).
+- GUS users with SBOS running may use /p388:1.
+
+* RdosPlay sounds HORRIBLE on GUS !
+- That's the fault of OPL2 emulation on GUS, not mine. You have to stay with it
+  or to wait until REMUS (Rdos Emulation Sound system) is released. It will
+  bring a brand new OPL3 emulation for your GUS (hopefully).
+
+* I have D/A converter (PC Speaker), does RdosPlay support it ?
+- No, It does not. You have to wait until REMUS is released.
+
+* I have some SAT modules and it seems some of them aren't played correctly
+  with RdosPlay.
+- Yes, it's the fault of RdosPlay's SAT playing routine. I have to improve it.
+
+* What about a fileselector in RdosPlay ?
+- It's currently in development, wait for new RdosPlay release.
+
+* Why are sometimes FXM modules played incorrectly (i mean drums) ?
+- Not 100% right FXM interpreter initialization causes that noise channel of
+  adlib card is not initialized at all. FXM player is undergoing recontruction
+  now. Wait for another release.
+
+
+WHERE TO FIND RDOSPLAY:
+-----------------------
+Each time I have a new version of RDOSPLAY available, I'll upload it to
+this place:
+
+ ftp://sorry.vse.cz/dimension   (Dimension FTP site in Prague, Czech Republic)
+http://sorry.vse.cz/dimension   (Dimension Inet HeadQuarters, Czech Republic)
+
+RdosPlay will be probably also available at ftp.cdrom.com and ftp.sunet.se
+FTP archives.
+
+   Ask your local Internet or FTP expert on how to reach them.
+
+Another way is to visit RdosPlay's homepage at address:
+
+   http://sorry.vse.cz/dimension/rdos/rdosplay   (Http site in Prague, CZE)
+
+
+THANX:
+------
+
+Although I did all the programming, there are few friends which helped me with
+some things about this program. Thanx go to:
+
+Ondrej Stasek (Ondar/Dimension) - testing, suggestions, new formats delivery
+David Voracek (Assassin/Dimension) -          - || -
+
+and other friends for their (mostly) betatesting and suggestions..
+
+
+CONTACTING ME:
+--------------
+  If you want to contact me, write to address listed below. If you want to send
+me suggestions, tips or simply greets, send it freely. Also some money would be
+good as a power and motivation for further work :-)  If you find any new module
+format  with  its  player  you can also send it to me. You can also send me any
+module you want to be in new version of RdosPlay.
+
+My address:                           E-Mail: (non-commercial)
+  Roman Dolejsi (RDOS)                    roman@sorry.vse.cz
+  Husova 419, Vcelna                      roman@romeo.pf.jcu.cz
+  37382 Ceske Budejovice
+  Czech Republic
+
+Please do not send me E-mails longer than 150kB (because of our local smtp
+server limit).
+
+*** end of RDOSPLAY documentation ***

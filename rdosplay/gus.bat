@@ -1,0 +1,1 @@
+@rdosplay.exe /p388:1 c:\anti\rdosplay\files\hsc\emptynes.hsc

@@ -1,0 +1,117 @@
+RdosPlay changes/revision history file
+======================================
+
+RdosPlay version 0.17e - 28th Dec 1996
+ - parameter /? is working again (nasty bug in start routines)
+ - corrected stereo_init - fileselector won't destroy /s parameter anymore
+ - fixed ADL init mistake causing RdosPlay's freeze
+
+RdosPlay version 0.17d - 11th Aug 1996
+ - supported modules larger than one segment (64k)
+ - enhancements in RAW format, to reflect RAC needs
+   - runtime music speed (command 02 00, next word = timer speed)
+   - runtime port-type switch (command 02 01 = OPL-A .. port 0/1
+                               command 02 02 = OPL-B .. port 2/3)
+     - when some RAW file contains these switches, it's considered to be
+       for OPL3 chip and is playable only on that chip
+   - new RDOSPLAY parameter /bXXXX specifying starting RAW file position
+   - when playing RAW files, current RAW position will be written during exit
+   - added support for multisegment modules (64k+)
+
+RdosPlay version 0.17c - 5th Aug 1996
+ - fixed bug in new internal stacks (causing SDB and some others to freeze)
+ - fixed CAL init routine
+
+RdosPlay version 0.17b - 28th Jun 1996
+ - repaired LED meter support
+   - does not overload system anymore
+   - LPT port selectable
+ - fixed bug in volume carrier detection (partially complete)
+ - added proper boundary check in /t parameter (ADL)
+ - reworked fileselector & internal stacks
+
+RdosPlay version 0.17a - 17th May 1996
+ - AMD support (Amusic tracker packed files)
+
+RdosPlay version 0.16a - 27th April 1996
+ - RAD support (Reality ADlib tracker files)
+ - D00 support (EdLib Vibrant's tracker / player ver 4.0 compatible modules)
+ - small internal changes / cleanups
+ - totally rewritten documentation
+ - decided to release it for public community
+   - work on fileselector freezed (oh boys, FS would take me too much time)
+
+RdosPlay version 0.14g - 6th February 1996
+ - RdosPlay desktop title bitmap added
+ - small changes in -grab file
+ - OPL2/OPL3 music screens diferenced
+ - parameter /p skips chip autodetection now (for GUS users :-)
+ - small changes in volume indicators
+ - work on file selector started
+
+RdosPlay version 0.14d - 9th September 1995
+ - ADL support
+   - music format used in many games (Dune II, Kyrandia, etc..)
+   - supported all 120 possible tracks (with parameter /t), default is 2
+ - SADT code cleanups (program size down by about 1000 bytes :-)
+ - internal SQX unpacker support (found in KGB game - packed SDB musics)
+ - added stereo support for OPL2 musics (parameter /s)
+ - fixed bug in init/shut routine, "shut" part is now probably complete
+ - added desktop bitmap and some visual changes in volume indicators
+ - moved to EXE format because of executable size (exceeded 64k :-)
+
+RdosPlay version 0.13g - 28th August 1995
+ - caught bug in sound card reset routine
+   - init/shut routine is almost perfect except init for FXM AY noise emulation
+
+RdosPlay version 0.13f - 17th August 1995
+ - RAW support - RAW AdLib data - used in StarPort2 intro
+ - VIB3 support - music format for player by JO/VIBRANTS
+ - sound card autodetection and reset
+   (OPL/2, OPL/3 and OPL/4 on ports 2X0, 388 - SBs and AdLibs, AdLibs Gold)
+   - init/shut routine is still not so perfect especially for AGD,FXM,RAW,VIB3.
+ - parameter /pXXX specifies port of OPL sound chip
+ - parameter /l enables use of LED-meter on LPT1 (very experimental)
+ - totally rewriten graphic routines
+ - new graphic design
+ - frequency analyzer
+ - many internal changes
+
+RdosPlay version 0.12a - 11th August 1995
+ - FXM support - Fuxoft music language made for Z80 & AY3-8910 chip
+   - still some problems with AY3-8910 -> AdLib noise emulation
+
+RdosPlay version 0.11a - 10th August 1995
+ - SIG support - Sound Images Generation music system - DIZZY games
+
+RdosPlay version 0.10a - 9th August 1995
+ - SAdT support - SAdT music composer
+   - player is very simple and supports only music files <64k
+   - wrong timer_speed with some files
+ - LEM support - X-Mas Lemmings game
+ - caught error in set_standard_timer routine
+
+RdosPlay version 0.08b - 8th August 1995
+ - CAL support - ShadowLands game
+ - internal HSQ & ICE unpackers
+ - great cleanups and optimalizations in playing routines
+    (code size down by about 3000 bytes)
+ - first graphical attempts with volume indicators
+ - started GRAB.TXT writing
+
+RdosPlay version 0.07a - 5th August 1995
+ - MUS support - First Samurai game
+ - LDS support - Zeppelin game - Loudness music system
+ - some internal changes
+
+RdosPlay version 0.05b - 4th August 1995
+ - VIB1 & VIB2 support - JCH/VIBRANTS music system
+ - PLX support - Logical game - Palladix music system
+ - some cleanups in music routines
+
+RdosPlay version 0.03a - 1st August 1995 - initial version
+ - SDB, AGD support - Dune game - Herad music system
+ - HSC support - musics written for HSC player
+ - no command line parameters except music filename
+ - no screen
+ - COM format

@@ -1,0 +1,134 @@
+
+
+                              *         *
+                     * *                            *
+                 *  *                                     *
+                                       ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+       ÛÛÛÛÛÛÜ ßßß ÛÛÜ  ÜÛÛ ÛÛÛßßß ÛÛÛÜÛ   Û   ÜÜÜÛÜÜÜÛ   Ü   Û   ßÛ   ÛÛ
+       ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛÛÛÛÛÛ ÛÛÛßß  ÛÛÛÛ    Û      Û   Û   Û   Û   Ü    ÛÛ
+       ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛŞİÛÛÛ ÛÛÛ    ÛÛÛ Û   ÛÛÛÛ   Û   Û   Û   Û   ÛÛ   ÛÛ 
+       ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ  ÛÛÛ ÛÛÛ    ÛÛÛ Û   ÛÛÛÛ   Û   Û   Û   Û   ÛÛ   ÛÛ
+       ÛÛÛÛÛÛß ÛÛÛ ÛÛÛ  ÛÛÛ ÛÛÛÛÛÛ ÛÛÛ Û   Û      Û   Û       Û   ÛÛ   ÛÛ
+                                       ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+                          ?   t h e   p o w e r s
+ ------------------------------------------------------------------------------
+
+	                assassin        the druid
+        	            rdos        the mage
+                           ondar        he is a bartender
+                    	haberman        it might be that. 
+
+
+			   I   t h e   i d e a
+ ------------------------------------------------------------------------------
+
+  we are couple of friends knowing each other for years, working together on
+  software projects nowadays. we all are busy studying yet, so do not expect 
+  many releases every month - but our goal is to deliver quality production 
+  on both pc demo & commercial scene time by time.  
+
+
+                            p r o d u c t i o n s   
+ ------------------------------------------------------------------------------
+           we would like you to check these important projects :
+  	
+
+  rdosumb      utility, that gives you up to 192kb additional upper (umb) 
+               memory without a need of protected mode managers such as qemm 
+	       or emm386. useful for having 620kb+ base memory with himem.
+	
+  	       (current version of jan 97, archive name: rumb11ea.zip)  
+  
+
+  rdosplay     first generic music player for adlib compatible (opl2/opl3)
+	       cards in pc world at all. module packing, graphical scopes and
+	       over 16 fm-music formats (agd,hsc,rad,d00...) are supported
+               together with easy_to_use file selector.
+
+               (current version of jan 97, archive name: rplay017e.zip)
+
+
+  remus        card1 -> card2 protected mode soundcard emulator. currently
+               the most working emulation is the gus (gf1) emulation on sb, 
+	       d/a, but the other could be useful for someone, too... 
+               this project is still very ALPHA state
+ 
+               (current version of jan 97, archive name: remus04e.zip) 
+
+
+
+    last but not least, some demo related artwork has to be released soon.
+
+
+
+
+
+                       d i s t r i b u t i o n   s i t e s
+ ------------------------------------------------------------------------------
+	       get our productions on these bbs sites worldwide :
+
+
+  A.C.E			+33-1-45887548     gandalf	  france
+  genesis		+32-2-2453498	   darkness	  belgium
+  digital fuse		+32-2-7570776      dr.vibe	  belgium
+  the velvet demosite	+32-3-3851594      sleeping dog	  belgium
+  itching desire        +46-8-6565711      wiz, drain     sweden
+  mostly harmless	+46-8-6369-011     the freak	  sweden  
+  count zero		+47-5512-2962	   yitzhaq	  norway
+  space bar		+47-6493-3499	   hybris	  norway
+
+
+   if you want to become our site and/or hq, send us some bbs info and your
+   personalities. you have to include your bbs advertisement, too.
+
+
+
+			  ğ   i n t e r n e t
+ ------------------------------------------------------------------------------
+	      our production is also available on the net :
+
+	 	    ftp://sorry.vse.cz/dimension
+	           http://sorry.vse.cz/dimension
+ 
+
+
+                             t o u c h   u s  
+ ------------------------------------------------------------------------------
+	        contact our team using the following ways :
+
+
+ internet email :    
+
+  dv@pf.jcu.cz                 (general requests, commercial offers..)
+  dv@pf.jcu.cz		       (assassin)
+  roman@sorry.vse.cz 	       (rdos, rdosumb, rdosplay, remus etc.)
+  xstao02@sorry.vse.cz         (ondar)
+  xkovacic@dinf.fst.cvut.cz    (haberman fans)  
+
+ if you want snail, here is where :
+
+  (assassin)           (rdos)             (ondar)              (haberman)
+  david voracek        roman dolejsi      ondrej stasek        jiri kovacicin
+  branisovska 50       husova 419         j.dietricha 4        xxxxmovingxxxx
+  370 05 c budejovice  373 82 vcelna      370 08 c budejovice  xxxxmovingxxxx
+  czech republic       czech republic     czech republic       czech republic
+
+ internet relay chat :
+
+  you can talk with assassin on irc channels #coders or #daskmig, or leave a
+  note for him on irc robot _gore.
+
+                                     
+
+ 
+
+                              t h a n k   y o u
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+             f o r   b e i n g   o u r s   f o r   a   w h i l e . . 
+
+
+
+
+
