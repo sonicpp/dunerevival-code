@@ -60,8 +60,10 @@ CryoEngine::CryoEngine(OSystem *syst, const ADGameDescription *gameDesc)
 	//DebugMan.addDebugChannel(kQuuxDebugExample2, "example2", "also an example");
  
 	// Don't forget to register your random source
-	g_eventRec.registerRandomSource(_rnd, "cryo");
- 
+	//OLDSTYLE 
+	//g_eventRec.registerRandomSource(_rnd, "cryo");
+	//NEWSTYLE
+	_rnd = new Common::RandomSource("cryo_randomseed");
 	//debug("CryoEngine::CryoEngine");
 }
  

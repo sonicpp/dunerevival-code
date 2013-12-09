@@ -25,6 +25,7 @@
 
 #include "common/memstream.h"
 #include "common/system.h"
+#include "graphics/palette.h"
 
 #include "cryo/resource.h"
 #include "cryo/sprite.h"
@@ -64,7 +65,7 @@ void Sprite::setPalette() {
 			palChunk[i * 4 + 2] = _res->_stream->readByte() << 2;	// B
 			palChunk[i * 4 + 3] = 0;	// A
 		}
-		_system->setPalette(palChunk, palStart, palCount);
+		_system->getPaletteManager()->setPalette(palChunk, palStart, palCount);
 		delete[] palChunk;
 	}
 }

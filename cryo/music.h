@@ -28,9 +28,9 @@
 #ifndef CRYO_MUSIC_H
 #define CRYO_MUSIC_H
 
-#include "sound/mididrv.h"
-#include "sound/midiparser.h"
-#include "sound/mixer.h"
+#include "audio/mididrv.h"
+#include "audio/midiparser.h"
+#include "audio/mixer.h"
 
 #include "common/array.h"
 #include "common/mutex.h"
@@ -43,10 +43,10 @@ enum MusicFlags {
 	MUSIC_DEFAULT = 0xffff
 };
 
-class MusicDriver : public MidiDriver {
+class CryoMusicDriver : public MidiDriver {
 public:
-	MusicDriver();
-	~MusicDriver();
+	CryoMusicDriver();
+	~CryoMusicDriver();
 
 	void setVolume(int volume);
 	int getVolume() { return _masterVolume; }
@@ -57,8 +57,9 @@ public:
 
 	//MidiDriver interface implementation
 	int open();
-	void close() { _driver->close(); }
+	void close() { _driver->close();}
 	void send(uint32 b);
+	bool isOpen(void) const;
 
 	void metaEvent(byte type, byte *data, uint16 length) {}
 
@@ -89,11 +90,11 @@ protected:
 	size_t _musicDataSize;
 };
 
-class Music {
+class CryoMusic {
 public:
 
-	Music(Audio::Mixer *mixer);
-	~Music();
+	CryoMusic(Audio::Mixer *mixer);
+	~CryoMusic();
 	bool isPlaying();
 
 	void play(Common::String filename, MusicFlags flags = MUSIC_DEFAULT);
@@ -109,7 +110,7 @@ public:
 private:
 	Audio::Mixer *_mixer;
 
-	MusicDriver *_driver;
+	CryoMusicDriver *_driver;
 	Audio::SoundHandle _musicHandle;
 	uint32 _trackNumber;
 

@@ -29,9 +29,9 @@
 #include "cryo/resource.h"
 #include "cryo/music.h"
 
-#include "sound/audiostream.h"
-#include "sound/mididrv.h"
-#include "sound/midiparser.h"
+#include "audio/audiostream.h"
+#include "audio/mididrv.h"
+#include "audio/midiparser.h"
 
 #include "common/config-manager.h"
 #include "common/file.h"
@@ -42,7 +42,7 @@ namespace Cryo {
 #define BUFFER_SIZE 4096
 #define MUSIC_SUNSPOT 26
 
-MusicDriver::MusicDriver() : _isGM(false) {
+CryoMusicDriver::CryoMusicDriver() : _isGM(false) {
 	memset(_channel, 0, sizeof(_channel));
 	_masterVolume = 0;
 	_nativeMT32 = ConfMan.getBool("native_mt32");
@@ -56,12 +56,12 @@ MusicDriver::MusicDriver() : _isGM(false) {
 	this->open();
 }
 
-MusicDriver::~MusicDriver() {
+CryoMusicDriver::~CryoMusicDriver() {
 	this->close();
 	delete _driver;
 }
 
-int MusicDriver::open() {
+int CryoMusicDriver::open() {
 	int retValue = _driver->open();
 	if (retValue)
 		return retValue;
@@ -74,7 +74,13 @@ int MusicDriver::open() {
 	return 0;
 }
 
-void MusicDriver::setVolume(int volume) {
+bool CryoMusicDriver::isOpen(void) const
+{
+	return (_driver->isOpen());
+}
+
+
+void CryoMusicDriver::setVolume(int volume) {
 	volume = CLIP(volume, 0, 255);
 
 	if (_masterVolume == volume)
@@ -91,7 +97,7 @@ void MusicDriver::setVolume(int volume) {
 	}
 }
 
-void MusicDriver::send(uint32 b) {
+void CryoMusicDriver::send(uint32 b) {
 	byte channel = (byte)(b & 0x0F);
 	if ((b & 0xFFF0) == 0x07B0) {
 		// Adjust volume changes by master volume
@@ -115,9 +121,10 @@ void MusicDriver::send(uint32 b) {
 		_channel[channel]->send(b);
 }
 
-Music::Music(Audio::Mixer *mixer) : _mixer(mixer), _data(0) {
+CryoMusic::CryoMusic(Audio::Mixer *mixer) : _mixer(mixer), _data(0) {
 	_currentVolume = 0;
-	_driver = new MusicDriver();
+	//OLD STYLE _driver = new MusicDriver();
+	_driver = new CryoMusicDriver();
 
 	if (!_driver->isAdlib()) {
 	}
@@ -135,7 +142,7 @@ Music::Music(Audio::Mixer *mixer) : _mixer(mixer), _data(0) {
 	_parser->property(MidiParser::mpCenterPitchWheelOnUnload, 1);
 }
 
-Music::~Music() {
+CryoMusic::~CryoMusic() {
 	_mixer->stopHandle(_musicHandle);
 	_driver->setTimerCallback(NULL, NULL);
 	delete _driver;
@@ -144,17 +151,18 @@ Music::~Music() {
 	delete _data;
 }
 
-void Music::musicVolumeGaugeCallback(void *refCon) {
-	((Music *)refCon)->musicVolumeGauge();
+void CryoMusic::musicVolumeGaugeCallback(void *refCon) {
+	((CryoMusic *)refCon)->musicVolumeGauge();
 }
 
-void Music::onTimer(void *refCon) {
-	Music *music = (Music *)refCon;
+
+void CryoMusic::onTimer(void *refCon) {
+	CryoMusic *music = (CryoMusic *)refCon;
 	Common::StackLock lock(music->_driver->_mutex);
 	music->_parser->onTimer();
 }
 
-void Music::musicVolumeGauge() {
+void CryoMusic::musicVolumeGauge() {
 	int volume;
 
 	_currentVolumePercent += 10;
@@ -176,7 +184,7 @@ void Music::musicVolumeGauge() {
 	}
 }
 
-void Music::setVolume(int volume, int time) {
+void CryoMusic::setVolume(int volume, int time) {
 	_targetVolume = volume;
 	_currentVolumePercent = 0;
 
@@ -192,12 +200,13 @@ void Music::setVolume(int volume, int time) {
 
 }
 
-bool Music::isPlaying() {
+bool CryoMusic::isPlaying() {
 	return _mixer->isSoundHandleActive(_musicHandle) || _parser->isPlaying();
 }
 
-void Music::play(Common::String filename, MusicFlags flags) {
-	debug(2, "Music::play %s, %d", filename.c_str(), flags);
+void CryoMusic::play(Common::String filename, MusicFlags flags) {
+	//TODO: find the new version of function "debug" in the new scummvm
+	//debug(2, "Music::play %s, %d", filename.c_str(), flags);
 
 	//if (isPlaying() && _trackNumber == resourceId) {
 	//	return;
@@ -231,15 +240,15 @@ void Music::play(Common::String filename, MusicFlags flags) {
 	_parser->property(MidiParser::mpAutoLoop, (flags & MUSIC_LOOP) ? 1 : 0);
 }
 
-void Music::pause() {
+void CryoMusic::pause() {
 	_driver->setTimerCallback(NULL, NULL);
 }
 
-void Music::resume() {
+void CryoMusic::resume() {
 	_driver->setTimerCallback(this, &onTimer);
 }
 
-void Music::stop() {
+void CryoMusic::stop() {
 	_driver->setTimerCallback(NULL, NULL);
 	_parser->unloadMusic();
 	delete[] _data;

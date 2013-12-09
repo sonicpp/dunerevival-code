@@ -27,10 +27,10 @@
 
 #include "common/system.h"
 
-#include "sound/audiostream.h"
-#include "sound/decoders/voc.h"
-#include "sound/decoders/raw.h"
-#include "sound/mixer.h"
+#include "audio/audiostream.h"
+#include "audio/decoders/voc.h"
+#include "audio/decoders/raw.h"
+#include "audio/mixer.h"
 
 #include "cryo/console.h"
 #include "cryo/cryo.h"
@@ -117,13 +117,21 @@ bool CryoConsole::cmdSound(int argc, const char **argv) {
 
 	Resource *res = new Resource(filename);
 	Common::SeekableReadStream& readS = *res->_stream;
+	Audio::SoundHandle handle;
+	/* OLD STYLE 
 	int size = res->_stream->size();
 	int rate = 0;
-	Audio::SoundHandle handle;
+	
 	byte *data = Audio::loadVOCFromStream(readS, size, rate);
 	delete res;
 
 	Audio::RewindableAudioStream *stream = Audio::makeRawStream(data, size, rate, Audio::FLAG_UNSIGNED);
+	*/
+
+	//NEW STYLE
+	Audio::RewindableAudioStream *stream = Audio::makeVOCStream(&readS,Audio::FLAG_UNSIGNED);
+
+
 	_engine->_system->getMixer()->playStream(Audio::Mixer::kSFXSoundType, &handle, stream, -1, 255);
 
 	return true;
@@ -157,6 +165,7 @@ bool CryoConsole::cmdSprite(int argc, const char **argv) {
 		}
 	} else {
 		// Draw sprite frame
+		//TODO: if any part of the sprite is outside of the screen, the game crashes (graphics.cpp assert)
 		_engine->_system->fillScreen(0);
 		uint16 frameNumber = atoi(argv[2]);
 		uint16 x = (argc > 3) ? atoi(argv[3]) : 0;

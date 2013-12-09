@@ -52,9 +52,9 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::EN_ANY,
-		Common::kPlatformPC,
+		Common::kPlatformDOS,
 		ADGF_NO_FLAGS,
-		Common::GUIO_NOSPEECH
+		GUIO0()
 	},
 
 	// English CD version
@@ -66,9 +66,9 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::EN_ANY,
-		Common::kPlatformPC,
+		Common::kPlatformDOS,
 		ADGF_CD,
-		Common::GUIO_NONE
+		GUIO0()
 	},
 
 	AD_TABLE_END_MARKER
@@ -76,6 +76,7 @@ static const ADGameDescription gameDescriptions[] = {
 
 } // End of namespace Cryo
 
+/* OLD STYLE
 static const ADParams detectionParams = {
 	// Pointer to ADGameDescription or its superset structure
 	(const byte *)Cryo::gameDescriptions,
@@ -94,16 +95,19 @@ static const ADParams detectionParams = {
 	// Flags
 	0,
 	// Additional GUI options (for every game}
-	Common::GUIO_NONE,
+	GUIO0(),
 	// Maximum directory depth
 	1,
 	// List of directory globs
 	0
 };
+*/
 
 class CryoMetaEngine : public AdvancedMetaEngine {
 public:
-	CryoMetaEngine() : AdvancedMetaEngine(detectionParams) {}
+	//OLD STYLE CryoMetaEngine() : AdvancedMetaEngine(detectionParams) {}
+	//NEW STYLE
+	CryoMetaEngine() : AdvancedMetaEngine(Cryo::gameDescriptions, sizeof(ADGameDescription), cryoGames) {}
 
 	virtual const char *getName() const {
 		return "Cryo Engine";

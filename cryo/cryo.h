@@ -59,7 +59,7 @@ private:
 	CryoConsole *_console;
  
 	// We need random numbers
-	Common::RandomSource _rnd;
+	Common::RandomSource* _rnd;
 	const ADGameDescription *_gameDescription;
 };
  
