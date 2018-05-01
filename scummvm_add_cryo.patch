@@ -1,35 +1,21 @@
-Index: base/plugins.cpp
-===================================================================
---- base/plugins.cpp	(revision 55230)
-+++ base/plugins.cpp	(working copy)
-@@ -109,6 +109,9 @@
- 		#if PLUGIN_ENABLED_STATIC(DRASCULA)
- 		LINK_PLUGIN(DRASCULA)
- 		#endif
-+		#if PLUGIN_ENABLED_STATIC(CRYO)
-+		LINK_PLUGIN(CRYO)
-+		#endif
- 		#if PLUGIN_ENABLED_STATIC(GOB)
- 		LINK_PLUGIN(GOB)
- 		#endif
-Index: configure
-===================================================================
---- configure	(revision 55230)
-+++ configure	(working copy)
-@@ -85,6 +85,7 @@
+diff --git a/engines/configure.engines b/engines/configure.engines
+index a52276130a..53df74f29c 100644
+--- a/engines/configure.engines
++++ b/engines/configure.engines
+@@ -10,6 +10,7 @@ add_engine cge "CGE" yes
+ add_engine cine "Cinematique evo 1" yes
+ add_engine composer "Magic Composer" yes
  add_engine cruise "Cinematique evo 2" yes
++add_engine Cryo "Cryo" no
  add_engine draci "Dragon History" yes
  add_engine drascula "Drascula: The Vampire Strikes Back" yes
-+add_engine Cryo "Cryo" no
- add_engine gob "Gobli*ns" yes
- add_engine groovie "Groovie" yes "groovie2"
- add_engine groovie2 "Groovie 2 games" no
-Index: engines/engines.mk
-===================================================================
---- engines/engines.mk	(revision 55230)
-+++ engines/engines.mk	(working copy)
-@@ -46,6 +46,11 @@
- MODULES += engines/drascula
+ add_engine dreamweb "Dreamweb" yes
+diff --git a/engines/engines.mk b/engines/engines.mk
+index bcf97df991..7556641f7e 100644
+--- a/engines/engines.mk
++++ b/engines/engines.mk
+@@ -46,6 +46,11 @@ DEFINES += -DENABLE_CRUISE=$(ENABLE_CRUISE)
+ MODULES += engines/cruise
  endif
  
 +ifdef ENABLE_CRYO
@@ -37,6 +23,6 @@ Index: engines/engines.mk
 +MODULES += engines/cryo
 +endif
 +
- ifdef ENABLE_GOB
- DEFINES += -DENABLE_GOB=$(ENABLE_GOB)
- MODULES += engines/gob
+ ifdef ENABLE_DRACI
+ DEFINES += -DENABLE_DRACI=$(ENABLE_DRACI)
+ MODULES += engines/draci
