@@ -1,0 +1,4 @@
+ifdef ENABLE_CRYO
+DEFINES += -DENABLE_CRYO=$(ENABLE_CRYO)
+MODULES += engines/cryo
+endif
