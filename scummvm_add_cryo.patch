@@ -26,3 +26,17 @@ index bcf97df991..7556641f7e 100644
  ifdef ENABLE_DRACI
  DEFINES += -DENABLE_DRACI=$(ENABLE_DRACI)
  MODULES += engines/draci
+diff --git a/engines/plugins_table.h b/engines/plugins_table.h
+index e5ac5ef..2b4bfcc 100644
+--- a/engines/plugins_table.h
++++ b/engines/plugins_table.h
+@@ -20,6 +20,9 @@ LINK_PLUGIN(COMPOSER)
+ #if PLUGIN_ENABLED_STATIC(CRUISE)
+ LINK_PLUGIN(CRUISE)
+ #endif
++#if PLUGIN_ENABLED_STATIC(CRYO)
++LINK_PLUGIN(CRYO)
++#endif
+ #if PLUGIN_ENABLED_STATIC(DRACI)
+ LINK_PLUGIN(DRACI)
+ #endif
