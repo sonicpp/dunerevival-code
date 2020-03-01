@@ -43,10 +43,10 @@ namespace Cryo {
 CryoConsole::CryoConsole(CryoEngine *engine) : GUI::Debugger(),
 	_engine(engine) {
 
-	DCmd_Register("dump",				WRAP_METHOD(CryoConsole, cmdDump));
-	DCmd_Register("sentences",			WRAP_METHOD(CryoConsole, cmdSentences));
-	DCmd_Register("sound",				WRAP_METHOD(CryoConsole, cmdSound));
-	DCmd_Register("sprite",				WRAP_METHOD(CryoConsole, cmdSprite));
+	registerCmd("dump",				WRAP_METHOD(CryoConsole, cmdDump));
+	registerCmd("sentences",			WRAP_METHOD(CryoConsole, cmdSentences));
+	registerCmd("sound",				WRAP_METHOD(CryoConsole, cmdSound));
+	registerCmd("sprite",				WRAP_METHOD(CryoConsole, cmdSprite));
 }
 
 CryoConsole::~CryoConsole() {
